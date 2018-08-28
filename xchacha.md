@@ -58,14 +58,24 @@ and a standalone [Go](https://github.com/aead/chacha20) library.
 
 ## Motivation for XChaCha20-Poly1305
 
+The nonce used by the original ChaCha20-Poly1305 is too short to safely use with
+random strings for long-lived keys. XChaCha20-Poly1305 does not have this
+restriction.
+
+By generating a subkey from a 128-bit nonce and the key, a reuse of only the
+latter 64 bits of the nonce isn't security-affecting, since the key (and thus,
+keystream) will be different.
+
+Assuming a secure random number generator, random 192-bit nonces should experience
+a single collision (with probability 50%) after roughly 2^96 messages
+(approximately 7.2998163e+28). A more conservative threshold (2^-32 chance of
+collision) still allows for 2^64 messages to be sent under a single key.
+
+Therefore, with XChaCha20-Poly1305, users can safely generate a random 192-bit
+nonce for each message and not worry about nonce-reuse vulnerabilities.
+
 As long as ChaCha20-Poly1305 is a secure AEAD cipher and ChaCha is a secure
 pseudorandom function (PRF), XChaCha20-Poly1305 is secure.
-
-The nonce used by the original ChaCha20-Poly1305 is too short to safely use with
-random strings for long-lived keys.
-
-With XChaCha20-Poly1305, users can safely generate a random 192-bit nonce for
-each message and not worry about nonce-reuse vulnerabilities.
 
 ## HChaCha20
 
