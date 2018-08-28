@@ -1,21 +1,23 @@
-% title = "XChaCha: eXtended-nonce ChaCha"
-% abbr = "XChaCha"
-% category = "info"
-% docname = "draft-xchacha-00"
-% workgroup = "(No Working Group)"
-% keyword = ["security", "token"]
-%
-% date = 2018-08-28T16:00:00Z
-%
-% [[author]]
-% initials="S."
-% surname="Arciszewski"
-% fullname="Scott Arciszewski"
-% organization="Paragon Initiative Enterprises"
-%   [author.address]
-%   email = "security@paragonie.com"
-%   [author.address.postal]
-%   country = "United States"
+%%%
+    title = "XChaCha: eXtended-nonce ChaCha"
+    abbr = "XChaCha"
+    category = "info"
+    docname = "draft-xchacha-00"
+    workgroup = "(No Working Group)"
+    keyword = ["security", "token"]
+    
+    date = 2018-08-28T16:00:00Z
+    
+    [[author]]
+    initials="S."
+    surname="Arciszewski"
+    fullname="Scott Arciszewski"
+    organization="Paragon Initiative Enterprises"
+      [author.address]
+      email = "security@paragonie.com"
+      [author.address.postal]
+      country = "United States"
+%%%
 
 .# Abstract
 
