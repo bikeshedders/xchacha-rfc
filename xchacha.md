@@ -1,4 +1,5 @@
 %%%
+
     title = "XChaCha: eXtended-nonce ChaCha"
     abbr = "XChaCha"
     category = "info"
@@ -17,6 +18,7 @@
       email = "security@paragonie.com"
       [author.address.postal]
       country = "United States"
+
 %%%
 
 .# Abstract
