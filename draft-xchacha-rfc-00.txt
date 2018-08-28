@@ -65,10 +65,10 @@ Table of Contents
    2.  AEAD_XChaCha20_Poly1305 . . . . . . . . . . . . . . . . . . .   2
      2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   2
      2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   3
+       2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   4
    3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
    Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   5
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
 
@@ -102,9 +102,9 @@ Table of Contents
 
 2.1.  Motivation for XChaCha20-Poly1305
 
-   As long as ChaCha20-Poly1305 is a secure AEAD cipher and ChaCha is a
-   secure pseudorandom function (PRF), XChaCha20-Poly1305 is secure.
-
+   The nonce used by the original ChaCha20-Poly1305 is too short to
+   safely use with random strings for long-lived keys.
+   XChaCha20-Poly1305 does not have this restriction.
 
 
 
@@ -114,12 +114,22 @@ Arciszewski               Expires March 1, 2019                 [Page 2]
 Internet-Draft                                               August 2018
 
 
-   The nonce used by the original ChaCha20-Poly1305 is too short to
-   safely use with random strings for long-lived keys.
+   By generating a subkey from a 128-bit nonce and the key, a reuse of
+   only the latter 64 bits of the nonce isn't security-affecting, since
+   the key (and thus, keystream) will be different.
 
-   With XChaCha20-Poly1305, users can safely generate a random 192-bit
-   nonce for each message and not worry about nonce-reuse
+   Assuming a secure random number generator, random 192-bit nonces
+   should experience a single collision (with probability 50%) after
+   roughly 2^96 messages (approximately 7.2998163e+28).  A more
+   conservative threshold (2^-32 chance of collision) still allows for
+   2^64 messages to be sent under a single key.
+
+   Therefore, with XChaCha20-Poly1305, users can safely generate a
+   random 192-bit nonce for each message and not worry about nonce-reuse
    vulnerabilities.
+
+   As long as ChaCha20-Poly1305 is a secure AEAD cipher and ChaCha is a
+   secure pseudorandom function (PRF), XChaCha20-Poly1305 is secure.
 
 2.2.  HChaCha20
 
@@ -150,6 +160,16 @@ Internet-Draft                                               August 2018
 
    After initialization, proceed through the ChaCha rounds as usual.
 
+
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 3]
+
+Internet-Draft                                               August 2018
+
+
    Once the 20 ChaCha rounds have been completed, the first 128 bits and
    last 128 bits of the keystream (both little-endian) are concatenated,
    and this 256-bit subkey is returned.
@@ -162,13 +182,6 @@ Internet-Draft                                               August 2018
       HChaCha state.
 
    o  Nonce = (00:00:00:09:00:00:00:4a:00:00:00:00:31:41:59:27)
-
-
-
-Arciszewski               Expires March 1, 2019                 [Page 3]
-
-Internet-Draft                                               August 2018
-
 
    After setting up the HChaCha state, it looks like this:
 
@@ -206,6 +219,13 @@ Internet-Draft                                               August 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+
+
+Arciszewski               Expires March 1, 2019                 [Page 4]
+
+Internet-Draft                                               August 2018
+
+
    [RFC7539]  Nir, Y. and A. Langley, "ChaCha20 and Poly1305 for IETF
               Protocols", RFC 7539, DOI 10.17487/RFC7539, May 2015,
               <https://www.rfc-editor.org/info/rfc7539>.
@@ -218,13 +238,6 @@ Internet-Draft                                               August 2018
    [2] https://github.com/LoupVaillant/Monocypher
 
    [3] https://github.com/jedisct1/xsecretbox
-
-
-
-Arciszewski               Expires March 1, 2019                 [Page 4]
-
-Internet-Draft                                               August 2018
-
 
    [4] https://github.com/aead/chacha20
 
@@ -241,19 +254,6 @@ Author's Address
    United States
 
    Email: security@paragonie.com
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
