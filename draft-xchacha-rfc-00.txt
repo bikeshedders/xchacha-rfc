@@ -89,7 +89,7 @@ Table of Contents
 
    XChaCha20-Poly1305 is a variant of the ChaCha20-Poly1305 AEAD
    construction as defined in [RFC7539] that uses a 192-bit nonce
-   instead of a 64-bit nonce.
+   instead of a 96-bit nonce.
 
    The algorithm for XChaCha20-Poly1305 is as follows:
 
@@ -234,8 +234,9 @@ Internet-Draft                                               August 2018
    1.  Pass the key and the first 16 bytes of the 24-byte nonce to
        HChaCha20 to obtain the subkey.
 
-   2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as
-       normal.
+   2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
+       (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
+       nonce).
 
    XChaCha20 is a stream cipher and offers no integrity guarantees
    without being combined with a MAC algorithm (e.g.  Poly1305).
@@ -273,7 +274,6 @@ Internet-Draft                                               August 2018
    [3] https://github.com/LoupVaillant/Monocypher
 
    [4] https://github.com/jedisct1/xsecretbox
-
 
 
 
