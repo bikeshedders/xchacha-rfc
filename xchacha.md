@@ -48,7 +48,8 @@ The algorithm for XChaCha20-Poly1305 is as follows:
 1. Calculate a subkey from the first 16 bytes of the nonce and the key, using
    HChaCha20 ((#hchacha20)).
 2. Use the subkey and remaining 8 bytes of the nonce (prefixed with 4 NUL
-   bytes) with AEAD_CHACHA20_POLY1305 from [@!RFC7539] as normal.
+   bytes) with AEAD_CHACHA20_POLY1305 from [@!RFC7539] as normal. The definition
+   for XChaCha20 is given in (#xchacha20).
 
 XChaCha20-Poly1305 implementations already exist in
 [WireGuard](https://www.wireguard.com),
@@ -164,7 +165,7 @@ being combined with a MAC algorithm (e.g. Poly1305).
 
 The same HChaCha20 subkey derivation can also be used in the context
 of an AEAD_ChaCha20_Poly1305 implementation to create 
-[AEAD_XChaCha20_Poly1305](#aeadxchacha20poly1305), as described above.
+AEAD_XChaCha20_Poly1305, as described in (#aeadxchacha20poly1305).
 
 ### XChaCha20 Pseudocode
 

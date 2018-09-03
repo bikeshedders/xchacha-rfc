@@ -98,7 +98,7 @@ Table of Contents
 
    2.  Use the subkey and remaining 8 bytes of the nonce (prefixed with
        4 NUL bytes) with AEAD_CHACHA20_POLY1305 from [RFC7539] as
-       normal.
+       normal.  The definition for XChaCha20 is given in Section 2.3.
 
    XChaCha20-Poly1305 implementations already exist in WireGuard [1],
    libsodium [2], Monocypher [3], xsecretbox [4], and a standalone Go
@@ -241,8 +241,8 @@ Internet-Draft                                               August 2018
    without being combined with a MAC algorithm (e.g.  Poly1305).
 
    The same HChaCha20 subkey derivation can also be used in the context
-   of an AEAD_ChaCha20_Poly1305 implementation to create Section 2, as
-   described above.
+   of an AEAD_ChaCha20_Poly1305 implementation to create
+   AEAD_XChaCha20_Poly1305, as described in Section 2.
 
 2.3.1.  XChaCha20 Pseudocode
 
