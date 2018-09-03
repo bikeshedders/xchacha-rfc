@@ -158,7 +158,9 @@ and HChaCha20. All one needs to do is:
 
 1. Pass the key and the first 16 bytes of the 24-byte nonce to
    HChaCha20 to obtain the subkey.
-2. Use the subkey and remaining 8 byte nonce with ChaCha20 as normal.
+2. Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
+   (prefixed by 4 NUL bytes, since [@!RFC7539] specifies a 12-byte
+   nonce).
 
 XChaCha20 is a stream cipher and offers no integrity guarantees without
 being combined with a MAC algorithm (e.g. Poly1305).
