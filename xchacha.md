@@ -41,7 +41,7 @@ RFC 2119 [@!RFC2119].
 # AEAD_XChaCha20_Poly1305
 
 XChaCha20-Poly1305 is a variant of the ChaCha20-Poly1305 AEAD construction as
-defined in [@!RFC7539] that uses a 192-bit nonce instead of a 64-bit nonce.
+defined in [@!RFC7539] that uses a 192-bit nonce instead of a 96-bit nonce.
 
 The algorithm for XChaCha20-Poly1305 is as follows:
 
