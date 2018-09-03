@@ -66,12 +66,14 @@ Table of Contents
      2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   3
      2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   3
        2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   4
+     2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   5
    3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
      3.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
      3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   5
-     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   5
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
+   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   6
+     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   6
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
 
@@ -101,8 +103,6 @@ Table of Contents
    XChaCha20-Poly1305 implementations already exist in WireGuard [1],
    libsodium [2], Monocypher [3], xsecretbox [4], and a standalone Go
    [5] library.
-
-
 
 
 
@@ -226,6 +226,30 @@ Arciszewski               Expires March 1, 2019                 [Page 4]
 Internet-Draft                                               August 2018
 
 
+2.3.  XChaCha20
+
+   XChaCha20 can be constructed from an existing ChaCha20 implementation
+   and HChaCha20.  All one needs to do is:
+
+   1.  Pass the key and the first 16 bytes of the 24-byte nonce to
+       HChaCha20 to obtain the subkey.
+
+   2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as
+       normal.
+
+   XChaCha20 is a stream cipher and offers no integrity guarantees
+   without being combined with a MAC algorithm (e.g.  Poly1305).
+
+   The same HChaCha20 subkey derivation can also be used in the context
+   of an AEAD_ChaCha20_Poly1305 implementation to create Section 2, as
+   described above.
+
+2.3.1.  XChaCha20 Pseudocode
+
+       xchacha20_encrypt(key, nonce, plaintext):
+           subkey = hchacha20(key, nonce[0:15])
+           return chacha20_encrypt(subkey, nonce[16:23], plaintext)
+
 3.  References
 
 3.1.  Normative References
@@ -249,6 +273,14 @@ Internet-Draft                                               August 2018
    [3] https://github.com/LoupVaillant/Monocypher
 
    [4] https://github.com/jedisct1/xsecretbox
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 5]
+
+Internet-Draft                                               August 2018
+
 
    [5] https://github.com/aead/chacha20
 
@@ -275,13 +307,6 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
     000  50 51 52 53 c0 c1 c2 c3 c4 c5 c6 c7              PQRS........
 
-
-
-Arciszewski               Expires March 1, 2019                 [Page 5]
-
-Internet-Draft                                               August 2018
-
-
    Key:
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
@@ -302,6 +327,16 @@ Internet-Draft                                               August 2018
   016  47 cc 68 73 a8 f2 b1 90 dd 73 80 71 83 f9 07 d5  G.hs.....s.q....
 
    Ciphertext:
+
+
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 6]
+
+Internet-Draft                                               August 2018
+
 
   000  bd 6d 17 9d 3e 83 d4 3b 95 76 57 94 93 c0 e9 39  .m..>..;.vW....9
   016  57 2a 17 00 25 2b fa cc be d2 90 2c 21 39 6c bb  W*..%+.....,!9l.
@@ -333,4 +368,25 @@ Author's Address
 
 
 
-Arciszewski               Expires March 1, 2019                 [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 7]
