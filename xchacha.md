@@ -56,7 +56,7 @@ XChaCha20-Poly1305 implementations already exist in
 [libsodium](https://download.libsodium.org/doc/secret-key_cryptography/xchacha20-poly1305_construction.html),
 [Monocypher](https://github.com/LoupVaillant/Monocypher),
 [xsecretbox](https://github.com/jedisct1/xsecretbox),
-and a standalone [Go](https://github.com/aead/chacha20) library.
+and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
 
 ## Motivation for XChaCha20-Poly1305
 

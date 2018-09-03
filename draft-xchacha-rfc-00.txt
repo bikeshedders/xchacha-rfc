@@ -101,8 +101,8 @@ Table of Contents
        normal.  The definition for XChaCha20 is given in Section 2.3.
 
    XChaCha20-Poly1305 implementations already exist in WireGuard [1],
-   libsodium [2], Monocypher [3], xsecretbox [4], and a standalone Go
-   [5] library.
+   libsodium [2], Monocypher [3], xsecretbox [4], and in Go's crypto/
+   chacha20poly1305 [5] library.
 
 
 
@@ -282,7 +282,7 @@ Arciszewski               Expires March 1, 2019                 [Page 5]
 Internet-Draft                                               August 2018
 
 
-   [5] https://github.com/aead/chacha20
+   [5] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
 
    [6] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
