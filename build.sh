@@ -1,4 +1,4 @@
 #!/bin/sh -e
 
-make draft-xchacha-rfc-draft00.txt
-rm draft-xchacha-rfc-draft00.xml
+make draft-xchacha-rfc-00.txt
+rm draft-xchacha-rfc-00.xml

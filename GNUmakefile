@@ -1,5 +1,5 @@
 FORMATS := html txt
-TARGETS := $(foreach ext,$(FORMATS),draft-xchacha-rfc-draft00.$(ext))
+TARGETS := $(foreach ext,$(FORMATS),draft-xchacha-rfc-00.$(ext))
 
 .PHONY: all clean publish
 all: $(TARGETS)
@@ -9,10 +9,10 @@ publish: all
 	cp $(TARGETS) pages/
 
 clean:
-	rm -f $(TARGETS) draft-xchacha-rfc-draft00.xml
+	rm -f $(TARGETS) draft-xchacha-rfc-00.xml
 	rm -rf pages
 
-draft-xchacha-rfc-draft00.xml: xchacha.md
+draft-xchacha-rfc-00.xml: xchacha.md
 	mmark -xml2 -page $< $@
 
 %.txt: %.xml
