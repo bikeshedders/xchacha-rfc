@@ -7,7 +7,7 @@
     workgroup = "(No Working Group)"
     keyword = ["security", "token"]
     
-    date = 2018-08-28T16:00:00Z
+    date = 2018-09-07T16:00:00Z
     
     [[author]]
     initials="S."
@@ -251,6 +251,14 @@ Poly1305 Key:
 ```
 000  7b 19 1f 80 f3 61 f0 99 09 4f 6f 4b 8f b9 7d f8  {....a...OoK..}.
 016  47 cc 68 73 a8 f2 b1 90 dd 73 80 71 83 f9 07 d5  G.hs.....s.q....
+
+
+
+
+
+
+
+
 ```
 
 Ciphertext:
@@ -265,8 +273,6 @@ Ciphertext:
 112  b5 2e                                            ..
 ```
 
-Tag:
-```
+Tag:  
 c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
-```
 
