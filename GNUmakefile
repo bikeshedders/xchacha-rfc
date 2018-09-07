@@ -9,10 +9,10 @@ publish: all
 	cp $(TARGETS) pages/
 
 clean:
-	rm -f $(TARGETS) draft-xchacha-rfc-00.xml
+	rm -f $(TARGETS) draft-arciszewski-xchacha-rfc-00.xml
 	rm -rf pages
 
-draft-xchacha-rfc-00.xml: xchacha.md
+draft-arciszewski-xchacha-rfc-00.xml: xchacha.md
 	mmark -xml2 -page $< $@
 
 %.txt: %.xml
