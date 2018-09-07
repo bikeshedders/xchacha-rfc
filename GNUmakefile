@@ -12,7 +12,7 @@ clean:
 	rm -f $(TARGETS) draft-xchacha-rfc-draft00.xml
 	rm -rf pages
 
-draft-xchacha-rfc-00.xml: xchacha.md
+draft-xchacha-rfc-draft00.xml: xchacha.md
 	mmark -xml2 -page $< $@
 
 %.txt: %.xml
