@@ -141,7 +141,7 @@ Figure: HChaCha20 State: c=constant k=key n=nonce
 After initialization, proceed through the ChaCha rounds as usual.
 
 Once the 20 ChaCha rounds have been completed, the first 128 bits and last 128
-bits of the keystream (both little-endian) are concatenated, and this 256-bit
+bits of the ChaCha state (both little-endian) are concatenated, and this 256-bit
 subkey is returned.
 
 ### Test Vector for the HChaCha20 Block Function
