@@ -25,8 +25,9 @@
 
 The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
 ChaCha-based ciphersuites to accept a 192-bit nonce with similar guarantees
-to the original construction (except a much lower probability
-of nonce misuse occurring, which is a security boon).
+to the original construction, except with a much lower probability of nonce
+misuse occurring. This enables XChaCha constructions to be stateless, while
+retaining the same security assumptions as ChaCha.
 
 This document defines XChaCha20, which uses HChaCha20 to convert the
 key and part of the nonce into a subkey, which is in turn used with the
@@ -50,9 +51,9 @@ the years, including AES-SIV ([@!RFC5297]), [AES-GCM-SIV](https://eprint.iacr.or
 and several [CAESAR candidates](https://competitions.cr.yp.to/caesar-submissions.html).
 
 However, a more straightforward strategy can prevent nonce misuse conditions
-in environments where a large number of messages are encrypted: Accept a large
-enough nonce such that applications can generate them randomly for each message
-and the probability of a collision remains low.
+in environments where a large number of messages are encrypted. Simply use a 
+large enough nonce such that applications can generate them randomly for each
+message and the probability of a collision remains low.
 
 To this end, we propose a solution that is already implemented in many software
 projects that extends the nonce of ChaCha20 to 192 bits and uses it to build an
@@ -96,7 +97,9 @@ restriction.
 
 By generating a subkey from a 128-bit nonce and the key, a reuse of only the
 latter 64 bits of the nonce isn't security-affecting, since the key (and thus,
-keystream) will be different.
+keystream) will be different. Additionally a re-use of only the first 128 bits
+of the nonce isn't security-affecting, as the nonce derived from the latter 64
+bits is different.
 
 Assuming a secure random number generator, random 192-bit nonces should experience
 a single collision (with probability 50%) after roughly 2^96 messages

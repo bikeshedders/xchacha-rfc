@@ -46,10 +46,8 @@ Status of This Memo
 
    This Internet-Draft will expire on March 11, 2019.
 
-Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
-   document authors.  All rights reserved.
+
 
 
 
@@ -59,6 +57,11 @@ Arciszewski              Expires March 11, 2019                 [Page 1]
 
 Internet-Draft                                            September 2018
 
+
+Copyright Notice
+
+   Copyright (c) 2018 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -104,17 +107,16 @@ Table of Contents
    can generate them randomly for each message and the probability of a
    collision remains low.
 
-   To this end, we propose a solution that is already implemented in
-   many software projects that extends the nonce of ChaCha20 to 192 bits
-   and uses it to build an AEAD construction.
-
-
 
 
 Arciszewski              Expires March 11, 2019                 [Page 2]
 
 Internet-Draft                                            September 2018
 
+
+   To this end, we propose a solution that is already implemented in
+   many software projects that extends the nonce of ChaCha20 to 192 bits
+   and uses it to build an AEAD construction.
 
 1.1.  Notation and Conventions
 
@@ -151,10 +153,9 @@ Internet-Draft                                            September 2018
 
    By generating a subkey from a 128-bit nonce and the key, a reuse of
    only the latter 64 bits of the nonce isn't security-affecting, since
-   the key (and thus, keystream) will be different.  Additionally a 
-   re-use of only the first 128 bits of the nonce isn't 
-   security-affecting, as the nonce derived from the latter 64 bits
-   is different.
+   the key (and thus, keystream) will be different.  Additionally a re-
+   use of only the first 128 bits of the nonce isn't security-affecting,
+   as the nonce derived from the latter 64 bits is different.
 
    Assuming a secure random number generator, random 192-bit nonces
    should experience a single collision (with probability 50%) after
@@ -162,18 +163,16 @@ Internet-Draft                                            September 2018
    conservative threshold (2^-32 chance of collision) still allows for
    2^64 messages to be sent under a single key.
 
-   Therefore, with XChaCha20-Poly1305, users can safely generate a
-   random 192-bit nonce for each message and not worry about nonce-reuse
-   vulnerabilities.
-
-
-
 
 
 Arciszewski              Expires March 11, 2019                 [Page 3]
 
 Internet-Draft                                            September 2018
 
+
+   Therefore, with XChaCha20-Poly1305, users can safely generate a
+   random 192-bit nonce for each message and not worry about nonce-reuse
+   vulnerabilities.
 
    As long as ChaCha20-Poly1305 is a secure AEAD cipher and ChaCha is a
    secure pseudorandom function (PRF), XChaCha20-Poly1305 is secure.
@@ -220,16 +219,14 @@ Internet-Draft                                            September 2018
 
    o  Nonce = (00:00:00:09:00:00:00:4a:00:00:00:00:31:41:59:27)
 
-   After setting up the HChaCha state, it looks like this:
-
-
-
 
 
 Arciszewski              Expires March 11, 2019                 [Page 4]
 
 Internet-Draft                                            September 2018
 
+
+   After setting up the HChaCha state, it looks like this:
 
                     61707865 3320646e 79622d32 6b206574
                     03020100 07060504 0b0a0908 0f0e0d0c
@@ -274,8 +271,6 @@ Internet-Draft                                            September 2018
    The same HChaCha20 subkey derivation can also be used in the context
    of an AEAD_ChaCha20_Poly1305 implementation to create
    AEAD_XChaCha20_Poly1305, as described in Section 2.
-
-
 
 
 
