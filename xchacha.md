@@ -23,13 +23,40 @@
 
 .# Abstract
 
-TODO
+The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
+ChaCha-based ciphersuites to accept a 192-bit nonce with similar guarantees
+to the original construction (except a much lower probability
+of nonce misuse occurring, which is a security boon).
+
+This document defines XChaCha20, which uses HChaCha20 to convert the
+key and part of the nonce into a subkey, which is in turn used with the
+remainder of the nonce with ChaCha20 to generate a pseudorandom keystream
+(e.g. for message encryption).
+
+This document also defines AEAD_XChaCha20_Poly1305, a variant of [@!RFC7539]
+that utilizes the XChaCha20 construction in place of ChaCha20.
 
 {mainmatter}
 
 # Introduction
 
-TODO
+AEAD constructions (Authenticated Encryption with Associated Data) allow
+for message confidentiality to be assured even in the presence of adaptive
+chosen-ciphertext attacks, but they're known to be
+[brittle to nonce-misuse conditions](https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-part-of-it/).
+
+Several nonce misuse resistant cipher constructions have been proposed over
+the years, including AES-SIV ([@!RFC5297]), [AES-GCM-SIV](https://eprint.iacr.org/2017/168.pdf),
+and several [CAESAR candidates](https://competitions.cr.yp.to/caesar-submissions.html).
+
+However, a more straightforward strategy can prevent nonce misuse conditions
+in environments where a large number of messages are encrypted: Accept a large
+enough nonce such that applications can generate them randomly for each message
+and the probability of a collision remains low.
+
+To this end, we propose a solution that is already implemented in many software
+projects that extends the nonce of ChaCha20 to 192 bits and uses it to build an
+AEAD construction.
 
 ## Notation and Conventions
 
@@ -57,6 +84,9 @@ XChaCha20-Poly1305 implementations already exist in
 [Monocypher](https://github.com/LoupVaillant/Monocypher),
 [xsecretbox](https://github.com/jedisct1/xsecretbox),
 and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
+
+Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
+XChaCha12-Poly1305.
 
 ## Motivation for XChaCha20-Poly1305
 

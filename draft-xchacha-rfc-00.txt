@@ -13,7 +13,19 @@ Expires: March 1, 2019
 
 Abstract
 
-   TODO
+   The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
+   ChaCha-based ciphersuites to accept a 192-bit nonce with similar
+   guarantees to the original construction (except a much lower
+   probability of nonce misuse occurring, which is a security boon).
+
+   This document defines XChaCha20, which uses HChaCha20 to convert the
+   key and part of the nonce into a subkey, which is in turn used with
+   the remainder of the nonce with ChaCha20 to generate a pseudorandom
+   keystream (e.g. for message encryption).
+
+   This document also defines AEAD_XChaCha20_Poly1305, a variant of
+   [RFC7539] that utilizes the XChaCha20 construction in place of
+   ChaCha20.
 
 Status of This Memo
 
@@ -37,6 +49,15 @@ Copyright Notice
    Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 1]
+
+Internet-Draft                                               August 2018
+
+
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -47,37 +68,51 @@ Copyright Notice
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
-
-
-
-
-
-
-Arciszewski               Expires March 1, 2019                 [Page 1]
-
-Internet-Draft                                               August 2018
-
-
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Notation and Conventions  . . . . . . . . . . . . . . . .   2
-   2.  AEAD_XChaCha20_Poly1305 . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Notation and Conventions  . . . . . . . . . . . . . . . .   3
+   2.  AEAD_XChaCha20_Poly1305 . . . . . . . . . . . . . . . . . . .   3
      2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   3
-     2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   4
      2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   5
-       2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   5
-   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
-     3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   6
-     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   6
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
+       2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   6
+   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
+     3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   7
+     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   7
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
 
-   TODO
+   AEAD constructions (Authenticated Encryption with Associated Data)
+   allow for message confidentiality to be assured even in the presence
+   of adaptive chosen-ciphertext attacks, but they're known to be
+   brittle to nonce-misuse conditions [1].
+
+   Several nonce misuse resistant cipher constructions have been
+   proposed over the years, including AES-SIV ([RFC5297]), AES-GCM-SIV
+   [2], and several CAESAR candidates [3].
+
+   However, a more straightforward strategy can prevent nonce misuse
+   conditions in environments where a large number of messages are
+   encrypted: Accept a large enough nonce such that applications can
+   generate them randomly for each message and the probability of a
+   collision remains low.
+
+   To this end, we propose a solution that is already implemented in
+   many software projects that extends the nonce of ChaCha20 to 192 bits
+   and uses it to build an AEAD construction.
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 2]
+
+Internet-Draft                                               August 2018
+
 
 1.1.  Notation and Conventions
 
@@ -100,19 +135,11 @@ Table of Contents
        4 NUL bytes) with AEAD_CHACHA20_POLY1305 from [RFC7539] as
        normal.  The definition for XChaCha20 is given in Section 2.3.
 
-   XChaCha20-Poly1305 implementations already exist in WireGuard [1],
-   libsodium [2], Monocypher [3], xsecretbox [4], and in Go's crypto/
-   chacha20poly1305 [5] library.
+   XChaCha20-Poly1305 implementations already exist in WireGuard [4],
+   libsodium [5], Monocypher [6], xsecretbox [7], and in Go's crypto/
+   chacha20poly1305 [8] library.
 
-
-
-
-
-
-Arciszewski               Expires March 1, 2019                 [Page 2]
-
-Internet-Draft                                               August 2018
-
+   Similarly, Google's HPolyC [9] implements XChaCha12-Poly1305.
 
 2.1.  Motivation for XChaCha20-Poly1305
 
@@ -134,14 +161,23 @@ Internet-Draft                                               August 2018
    random 192-bit nonce for each message and not worry about nonce-reuse
    vulnerabilities.
 
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 3]
+
+Internet-Draft                                               August 2018
+
+
    As long as ChaCha20-Poly1305 is a secure AEAD cipher and ChaCha is a
    secure pseudorandom function (PRF), XChaCha20-Poly1305 is secure.
 
 2.2.  HChaCha20
 
    *HChaCha20* is an intermediary step towards XChaCha20 based on the
-   construction and security proof used to create XSalsa20 [6], an
-   extended-nonce Salsa20 variant used in NaCl [7].
+   construction and security proof used to create XSalsa20 [10], an
+   extended-nonce Salsa20 variant used in NaCl [11].
 
    HChaCha20 is initialized the same way as the ChaCha cipher, except
    that HChaCha20 uses a 128-bit nonce and has no counter.
@@ -156,19 +192,6 @@ Internet-Draft                                               August 2018
                   bbbbbbbb  nnnnnnnn  nnnnnnnn  nnnnnnnn
 
            ChaCha20 State: c=constant k=key b=blockcount n=nonce
-
-
-
-
-
-
-
-
-
-Arciszewski               Expires March 1, 2019                 [Page 3]
-
-Internet-Draft                                               August 2018
-
 
                   cccccccc  cccccccc  cccccccc  cccccccc
                   kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
@@ -193,6 +216,15 @@ Internet-Draft                                               August 2018
    o  Nonce = (00:00:00:09:00:00:00:4a:00:00:00:00:31:41:59:27)
 
    After setting up the HChaCha state, it looks like this:
+
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 4]
+
+Internet-Draft                                               August 2018
+
 
                     61707865 3320646e 79622d32 6b206574
                     03020100 07060504 0b0a0908 0f0e0d0c
@@ -219,13 +251,6 @@ Internet-Draft                                               August 2018
 
                         Resultant HChaCha20 subkey
 
-
-
-Arciszewski               Expires March 1, 2019                 [Page 4]
-
-Internet-Draft                                               August 2018
-
-
 2.3.  XChaCha20
 
    XChaCha20 can be constructed from an existing ChaCha20 implementation
@@ -245,6 +270,18 @@ Internet-Draft                                               August 2018
    of an AEAD_ChaCha20_Poly1305 implementation to create
    AEAD_XChaCha20_Poly1305, as described in Section 2.
 
+
+
+
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 5]
+
+Internet-Draft                                               August 2018
+
+
 2.3.1.  XChaCha20 Pseudocode
 
        xchacha20_encrypt(key, nonce, plaintext):
@@ -260,33 +297,48 @@ Internet-Draft                                               August 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC5297]  Harkins, D., "Synthetic Initialization Vector (SIV)
+              Authenticated Encryption Using the Advanced Encryption
+              Standard (AES)", RFC 5297, DOI 10.17487/RFC5297, October
+              2008, <https://www.rfc-editor.org/info/rfc5297>.
+
    [RFC7539]  Nir, Y. and A. Langley, "ChaCha20 and Poly1305 for IETF
               Protocols", RFC 7539, DOI 10.17487/RFC7539, May 2015,
               <https://www.rfc-editor.org/info/rfc7539>.
 
 3.2.  URIs
 
-   [1] https://www.wireguard.com
+   [1] https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-
+       part-of-it/
 
-   [2] https://download.libsodium.org/doc/secret-key_cryptography/
+   [2] https://eprint.iacr.org/2017/168.pdf
+
+   [3] https://competitions.cr.yp.to/caesar-submissions.html
+
+   [4] https://www.wireguard.com
+
+   [5] https://download.libsodium.org/doc/secret-key_cryptography/
        xchacha20-poly1305_construction.html
 
-   [3] https://github.com/LoupVaillant/Monocypher
+   [6] https://github.com/LoupVaillant/Monocypher
 
-   [4] https://github.com/jedisct1/xsecretbox
+   [7] https://github.com/jedisct1/xsecretbox
+
+   [8] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
+
+   [9] https://github.com/google/hpolyc
+
+   [10] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
 
 
-Arciszewski               Expires March 1, 2019                 [Page 5]
+
+Arciszewski               Expires March 1, 2019                 [Page 6]
 
 Internet-Draft                                               August 2018
 
 
-   [5] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
-
-   [6] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
-
-   [7] https://nacl.cr.yp.to
+   [11] https://nacl.cr.yp.to
 
 Appendix A.  Additional Test Vectors
 
@@ -333,7 +385,11 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski               Expires March 1, 2019                 [Page 6]
+
+
+
+
+Arciszewski               Expires March 1, 2019                 [Page 7]
 
 Internet-Draft                                               August 2018
 
@@ -389,4 +445,4 @@ Author's Address
 
 
 
-Arciszewski               Expires March 1, 2019                 [Page 7]
+Arciszewski               Expires March 1, 2019                 [Page 8]
