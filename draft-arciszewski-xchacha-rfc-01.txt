@@ -9,7 +9,7 @@ Expires: March 11, 2019
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
-                      draft-arciszewski-xchacha-00
+                      draft-arciszewski-xchacha-01
 
 Abstract
 
@@ -320,7 +320,7 @@ Internet-Draft                                            September 2018
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
        xchacha20-poly1305_construction.html
 
-   [6] https://github.com/LoupVaillant/Monocypher
+   [6] https://monocypher.org/manual/aead
 
    [7] https://github.com/jedisct1/xsecretbox
 

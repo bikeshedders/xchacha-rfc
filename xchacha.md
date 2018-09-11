@@ -3,7 +3,7 @@
     title = "XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305"
     abbr = "XChaCha"
     category = "info"
-    docname = "draft-arciszewski-xchacha-00"
+    docname = "draft-arciszewski-xchacha-01"
     workgroup = "(No Working Group)"
     keyword = ["security", "token"]
     
@@ -82,7 +82,7 @@ The algorithm for XChaCha20-Poly1305 is as follows:
 XChaCha20-Poly1305 implementations already exist in
 [WireGuard](https://www.wireguard.com),
 [libsodium](https://download.libsodium.org/doc/secret-key_cryptography/xchacha20-poly1305_construction.html),
-[Monocypher](https://github.com/LoupVaillant/Monocypher),
+[Monocypher](https://monocypher.org/manual/aead),
 [xsecretbox](https://github.com/jedisct1/xsecretbox),
 and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
 
