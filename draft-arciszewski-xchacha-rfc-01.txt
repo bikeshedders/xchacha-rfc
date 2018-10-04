@@ -4,8 +4,8 @@
 
 (No Working Group)                                        S. Arciszewski
 Internet-Draft                            Paragon Initiative Enterprises
-Intended status: Informational                         September 7, 2018
-Expires: March 11, 2019
+Intended status: Informational                           October 4, 2018
+Expires: April 7, 2019
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 11, 2019.
+   This Internet-Draft will expire on April 7, 2019.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 1]
+Arciszewski               Expires April 7, 2019                 [Page 1]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 2]
+Arciszewski               Expires April 7, 2019                 [Page 2]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    can generate them randomly for each message and the probability of a
@@ -165,9 +165,9 @@ Internet-Draft                                            September 2018
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 3]
+Arciszewski               Expires April 7, 2019                 [Page 3]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    roughly 2^96 messages (approximately 7.2998163e+28).  A more
@@ -221,9 +221,9 @@ Internet-Draft                                            September 2018
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 4]
+Arciszewski               Expires April 7, 2019                 [Page 4]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
 2.2.1.  Test Vector for the HChaCha20 Block Function
@@ -277,9 +277,9 @@ Internet-Draft                                            September 2018
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 5]
+Arciszewski               Expires April 7, 2019                 [Page 5]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    XChaCha20 is a stream cipher and offers no integrity guarantees
@@ -333,9 +333,9 @@ Internet-Draft                                            September 2018
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 6]
+Arciszewski               Expires April 7, 2019                 [Page 6]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    [8] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
@@ -389,9 +389,9 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 7]
+Arciszewski               Expires April 7, 2019                 [Page 7]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    Poly1305 Key:
@@ -445,9 +445,9 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 8]
+Arciszewski               Expires April 7, 2019                 [Page 8]
 
-Internet-Draft                                            September 2018
+Internet-Draft                                              October 2018
 
 
    IV:
@@ -501,4 +501,4 @@ Author's Address
 
 
 
-Arciszewski              Expires March 11, 2019                 [Page 9]
+Arciszewski               Expires April 7, 2019                 [Page 9]
