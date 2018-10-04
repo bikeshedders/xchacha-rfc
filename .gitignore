@@ -1,1 +1,3 @@
 *.xml
+test/composer.lock
+test/vendor
