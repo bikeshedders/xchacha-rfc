@@ -84,6 +84,7 @@ XChaCha20-Poly1305 implementations already exist in
 [libsodium](https://download.libsodium.org/doc/secret-key_cryptography/xchacha20-poly1305_construction.html),
 [Monocypher](https://monocypher.org/manual/aead),
 [xsecretbox](https://github.com/jedisct1/xsecretbox),
+[Tink](https://github.com/google/tink),
 and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
 
 Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
@@ -243,19 +244,20 @@ IV:
 ```
 000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
 016  50 51 52 53 54 55 56 57                          PQRSTUVW
+
+
+
+
+
+
+
+
+
 ```
 
 32-bit fixed-common part:
 ```
 000  00 00 00 00                                      ....
-
-
-
-
-
-
-
-
 ```
 
 Poly1305 Key:
@@ -303,6 +305,8 @@ Plaintext:
 100  6b 61 6c 73 2c 20 61 6e 64 20 66 6f 78 65 73 20  kals, and foxes 
 110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
 120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
+
+
 ```
 
 Key:
