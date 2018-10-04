@@ -241,7 +241,7 @@ Key:
 
 IV:
 ```
-000  40 41 42 43 44 45 46 47 48 49 4a fb 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
 016  50 51 52 53 54 55 56 57                          PQRSTUVW
 ```
 
