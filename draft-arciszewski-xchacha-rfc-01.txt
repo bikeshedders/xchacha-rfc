@@ -4,8 +4,8 @@
 
 (No Working Group)                                        S. Arciszewski
 Internet-Draft                            Paragon Initiative Enterprises
-Intended status: Informational                           October 4, 2018
-Expires: April 7, 2019
+Intended status: Informational                           October 5, 2018
+Expires: April 8, 2019
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 7, 2019.
+   This Internet-Draft will expire on April 8, 2019.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 1]
+Arciszewski               Expires April 8, 2019                 [Page 1]
 
 Internet-Draft                                              October 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 2]
+Arciszewski               Expires April 8, 2019                 [Page 2]
 
 Internet-Draft                                              October 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                                              October 2018
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 3]
+Arciszewski               Expires April 8, 2019                 [Page 3]
 
 Internet-Draft                                              October 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                                              October 2018
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 4]
+Arciszewski               Expires April 8, 2019                 [Page 4]
 
 Internet-Draft                                              October 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                                              October 2018
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 5]
+Arciszewski               Expires April 8, 2019                 [Page 5]
 
 Internet-Draft                                              October 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                                              October 2018
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 6]
+Arciszewski               Expires April 8, 2019                 [Page 6]
 
 Internet-Draft                                              October 2018
 
@@ -389,7 +389,7 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 7]
+Arciszewski               Expires April 8, 2019                 [Page 7]
 
 Internet-Draft                                              October 2018
 
@@ -445,7 +445,7 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 8]
+Arciszewski               Expires April 8, 2019                 [Page 8]
 
 Internet-Draft                                              October 2018
 
@@ -501,4 +501,4 @@ Author's Address
 
 
 
-Arciszewski               Expires April 7, 2019                 [Page 9]
+Arciszewski               Expires April 8, 2019                 [Page 9]

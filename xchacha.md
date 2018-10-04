@@ -5,7 +5,7 @@
     category = "info"
     docname = "draft-arciszewski-xchacha-01"
     workgroup = "(No Working Group)"
-    keyword = ["security", "token"]
+    keyword = ["encryption", "AEAD", "cryptography", "security", "authenticated encryption"]
     
     date = 2018-10-05T16:00:00Z
     
