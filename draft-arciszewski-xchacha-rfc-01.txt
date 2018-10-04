@@ -80,7 +80,7 @@ Table of Contents
    2.  AEAD_XChaCha20_Poly1305 . . . . . . . . . . . . . . . . . . .   3
      2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   3
      2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   4
-       2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   4
+       2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   5
      2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   5
        2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   6
    3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
@@ -88,7 +88,8 @@ Table of Contents
      3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
    Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   7
      A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   7
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   8
+     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .   8
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -104,8 +105,7 @@ Table of Contents
    However, a more straightforward strategy can prevent nonce misuse
    conditions in environments where a large number of messages are
    encrypted.  Simply use a large enough nonce such that applications
-   can generate them randomly for each message and the probability of a
-   collision remains low.
+
 
 
 
@@ -113,6 +113,9 @@ Arciszewski              Expires March 11, 2019                 [Page 2]
 
 Internet-Draft                                            September 2018
 
+
+   can generate them randomly for each message and the probability of a
+   collision remains low.
 
    To this end, we propose a solution that is already implemented in
    many software projects that extends the nonce of ChaCha20 to 192 bits
@@ -159,9 +162,6 @@ Internet-Draft                                            September 2018
 
    Assuming a secure random number generator, random 192-bit nonces
    should experience a single collision (with probability 50%) after
-   roughly 2^96 messages (approximately 7.2998163e+28).  A more
-   conservative threshold (2^-32 chance of collision) still allows for
-   2^64 messages to be sent under a single key.
 
 
 
@@ -169,6 +169,10 @@ Arciszewski              Expires March 11, 2019                 [Page 3]
 
 Internet-Draft                                            September 2018
 
+
+   roughly 2^96 messages (approximately 7.2998163e+28).  A more
+   conservative threshold (2^-32 chance of collision) still allows for
+   2^64 messages to be sent under a single key.
 
    Therefore, with XChaCha20-Poly1305, users can safely generate a
    random 192-bit nonce for each message and not worry about nonce-reuse
@@ -210,6 +214,18 @@ Internet-Draft                                            September 2018
    last 128 bits of the ChaCha state (both little-endian) are
    concatenated, and this 256-bit subkey is returned.
 
+
+
+
+
+
+
+
+Arciszewski              Expires March 11, 2019                 [Page 4]
+
+Internet-Draft                                            September 2018
+
+
 2.2.1.  Test Vector for the HChaCha20 Block Function
 
    o  Key = 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:
@@ -218,13 +234,6 @@ Internet-Draft                                            September 2018
       HChaCha state.
 
    o  Nonce = (00:00:00:09:00:00:00:4a:00:00:00:00:31:41:59:27)
-
-
-
-Arciszewski              Expires March 11, 2019                 [Page 4]
-
-Internet-Draft                                            September 2018
-
 
    After setting up the HChaCha state, it looks like this:
 
@@ -265,15 +274,6 @@ Internet-Draft                                            September 2018
        (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
        nonce).
 
-   XChaCha20 is a stream cipher and offers no integrity guarantees
-   without being combined with a MAC algorithm (e.g.  Poly1305).
-
-   The same HChaCha20 subkey derivation can also be used in the context
-   of an AEAD_ChaCha20_Poly1305 implementation to create
-   AEAD_XChaCha20_Poly1305, as described in Section 2.
-
-
-
 
 
 
@@ -281,6 +281,13 @@ Arciszewski              Expires March 11, 2019                 [Page 5]
 
 Internet-Draft                                            September 2018
 
+
+   XChaCha20 is a stream cipher and offers no integrity guarantees
+   without being combined with a MAC algorithm (e.g.  Poly1305).
+
+   The same HChaCha20 subkey derivation can also be used in the context
+   of an AEAD_ChaCha20_Poly1305 implementation to create
+   AEAD_XChaCha20_Poly1305, as described in Section 2.
 
 2.3.1.  XChaCha20 Pseudocode
 
@@ -324,19 +331,18 @@ Internet-Draft                                            September 2018
 
    [7] https://github.com/jedisct1/xsecretbox
 
-   [8] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
-
-   [9] https://github.com/google/hpolyc
-
-   [10] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
-
-
 
 
 Arciszewski              Expires March 11, 2019                 [Page 6]
 
 Internet-Draft                                            September 2018
 
+
+   [8] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
+
+   [9] https://github.com/google/hpolyc
+
+   [10] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
    [11] https://nacl.cr.yp.to
 
@@ -366,7 +372,7 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
    IV:
 
-  000  40 41 42 43 44 45 46 47 48 49 4a fb 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+  000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
   016  50 51 52 53 54 55 56 57                          PQRSTUVW
 
    32-bit fixed-common part:
@@ -374,12 +380,6 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
         000  00 00 00 00                                      ....
 
    Poly1305 Key:
-
-  000  7b 19 1f 80 f3 61 f0 99 09 4f 6f 4b 8f b9 7d f8  {....a...OoK..}.
-  016  47 cc 68 73 a8 f2 b1 90 dd 73 80 71 83 f9 07 d5  G.hs.....s.q....
-
-
-
 
 
 
@@ -392,6 +392,17 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 Arciszewski              Expires March 11, 2019                 [Page 7]
 
 Internet-Draft                                            September 2018
+
+
+  000  7b 19 1f 80 f3 61 f0 99 09 4f 6f 4b 8f b9 7d f8  {....a...OoK..}.
+  016  47 cc 68 73 a8 f2 b1 90 dd 73 80 71 83 f9 07 d5  G.hs.....s.q....
+
+
+
+
+
+
+
 
 
    Ciphertext:
@@ -407,6 +418,69 @@ Internet-Draft                                            September 2018
 
    Tag:
    c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
+
+A.2.  Example and Test Vector for XChaCha20
+
+   Plaintext:
+
+  000  54 68 65 20 64 68 6f 6c 65 20 28 70 72 6f 6e 6f  The dhole (prono
+  010  75 6e 63 65 64 20 22 64 6f 6c 65 22 29 20 69 73  unced "dole") is
+  020  20 61 6c 73 6f 20 6b 6e 6f 77 6e 20 61 73 20 74   also known as t
+  030  68 65 20 41 73 69 61 74 69 63 20 77 69 6c 64 20  he Asiatic wild
+  040  64 6f 67 2c 20 72 65 64 20 64 6f 67 2c 20 61 6e  dog, red dog, an
+  050  64 20 77 68 69 73 74 6c 69 6e 67 20 64 6f 67 2e  d whistling dog.
+  060  20 49 74 20 69 73 20 61 62 6f 75 74 20 74 68 65   It is about the
+  070  20 73 69 7a 65 20 6f 66 20 61 20 47 65 72 6d 61   size of a Germa
+  080  6e 20 73 68 65 70 68 65 72 64 20 62 75 74 20 6c  n shepherd but l
+  090  6f 6f 6b 73 20 6d 6f 72 65 20 6c 69 6b 65 20 61  ooks more like a
+  0a0  20 6c 6f 6e 67 2d 6c 65 67 67 65 64 20 66 6f 78   long-legged fox
+  0b0  2e 20 54 68 69 73 20 68 69 67 68 6c 79 20 65 6c  . This highly el
+  0c0  75 73 69 76 65 20 61 6e 64 20 73 6b 69 6c 6c 65  usive and skille
+  0d0  64 20 6a 75 6d 70 65 72 20 69 73 20 63 6c 61 73  d jumper is clas
+  0e0  73 69 66 69 65 64 20 77 69 74 68 20 77 6f 6c 76  sified with wolv
+  0f0  65 73 2c 20 63 6f 79 6f 74 65 73 2c 20 6a 61 63  es, coyotes, jac
+  100  6b 61 6c 73 2c 20 61 6e 64 20 66 6f 78 65 73 20  kals, and foxes
+  110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
+  120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
+
+
+
+Arciszewski              Expires March 11, 2019                 [Page 8]
+
+Internet-Draft                                            September 2018
+
+
+   Key:
+
+  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
+  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+   IV:
+
+  000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+  016  50 51 52 53 54 55 56 58                          PQRSTUVX
+
+   Ciphertext:
+
+  000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
+  010  50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
+  020  8d 8d 64 10 d5 40 a1 a6 37 5b 26 d8 0d ac e4 fa  ..d..@..7[&.....
+  030  b5 23 84 c7 31 ac bf 16 a5 92 3c 0c 48 d3 57 5d  .#..1.....<.H.W]
+  040  4d 0d 2c 67 3b 66 6f aa 73 10 61 27 77 01 09 3a  M.,g;fo.s.a'w..:
+  050  6b f7 a1 58 a8 86 42 92 a4 1c 48 e3 a9 b4 c0 da  k..X..B...H.....
+  060  ec e0 f8 d9 8d 0d 7e 05 b3 7a 30 7b bb 66 33 31  ......~..z0{.f31
+  070  64 ec 9e 1b 24 ea 0d 6c 3f fd dc ec 4f 68 e7 44  d...$..l?...Oh.D
+  080  30 56 19 3a 03 c8 10 e1 13 44 ca 06 d8 ed 8a 2b  0V.:.....D.....+
+  090  fb 1e 8d 48 cf a6 bc 0e b4 e2 46 4b 74 81 42 40  ...H......FKt.B@
+  0a0  7c 9f 43 1a ee 76 99 60 e1 5b a8 b9 68 90 46 6e  |.C..v.`.[..h.Fn
+  0b0  f2 45 75 99 85 23 85 c6 61 f7 52 ce 20 f9 da 0c  .Eu..#..a.R. ...
+  0c0  09 ab 6b 19 df 74 e7 6a 95 96 74 46 f8 d0 fd 41  ..k..t.j..tF...A
+  0d0  5e 7b ee 2a 12 a1 14 c2 0e b5 29 2a e7 a3 49 ae  ^{.*......)*..I.
+  0e0  57 78 20 d5 52 0a 1f 3f b6 2a 17 ce 6a 7e 68 fa  Wx .R..?.*..j~h.
+  0f0  7c 79 11 1d 88 60 92 0b c0 48 ef 43 fe 84 48 6c  |y...`...H.C..Hl
+  100  cb 87 c2 5f 0a e0 45 f0 cc e1 e7 98 9a 9a a2 20  ..._..E........
+  110  a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
+  120  93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
 
 Author's Address
 
@@ -427,22 +501,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Arciszewski              Expires March 11, 2019                 [Page 8]
+Arciszewski              Expires March 11, 2019                 [Page 9]
