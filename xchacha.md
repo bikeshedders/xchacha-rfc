@@ -248,20 +248,20 @@ IV:
 32-bit fixed-common part:
 ```
 000  00 00 00 00                                      ....
+
+
+
+
+
+
+
+
 ```
 
 Poly1305 Key:
 ```
 000  7b 19 1f 80 f3 61 f0 99 09 4f 6f 4b 8f b9 7d f8  {....a...OoK..}.
 016  47 cc 68 73 a8 f2 b1 90 dd 73 80 71 83 f9 07 d5  G.hs.....s.q....
-
-
-
-
-
-
-
-
 ```
 
 Ciphertext:
