@@ -279,3 +279,63 @@ Ciphertext:
 Tag:  
 c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
 
+
+## Example and Test Vector for XChaCha20
+
+Plaintext:
+```
+000  54 68 65 20 64 68 6f 6c 65 20 28 70 72 6f 6e 6f  The dhole (prono
+010  75 6e 63 65 64 20 22 64 6f 6c 65 22 29 20 69 73  unced "dole") is
+020  20 61 6c 73 6f 20 6b 6e 6f 77 6e 20 61 73 20 74   also known as t
+030  68 65 20 41 73 69 61 74 69 63 20 77 69 6c 64 20  he Asiatic wild 
+040  64 6f 67 2c 20 72 65 64 20 64 6f 67 2c 20 61 6e  dog, red dog, an
+050  64 20 77 68 69 73 74 6c 69 6e 67 20 64 6f 67 2e  d whistling dog.
+060  20 49 74 20 69 73 20 61 62 6f 75 74 20 74 68 65   It is about the
+070  20 73 69 7a 65 20 6f 66 20 61 20 47 65 72 6d 61   size of a Germa
+080  6e 20 73 68 65 70 68 65 72 64 20 62 75 74 20 6c  n shepherd but l
+090  6f 6f 6b 73 20 6d 6f 72 65 20 6c 69 6b 65 20 61  ooks more like a
+0a0  20 6c 6f 6e 67 2d 6c 65 67 67 65 64 20 66 6f 78   long-legged fox
+0b0  2e 20 54 68 69 73 20 68 69 67 68 6c 79 20 65 6c  . This highly el
+0c0  75 73 69 76 65 20 61 6e 64 20 73 6b 69 6c 6c 65  usive and skille
+0d0  64 20 6a 75 6d 70 65 72 20 69 73 20 63 6c 61 73  d jumper is clas
+0e0  73 69 66 69 65 64 20 77 69 74 68 20 77 6f 6c 76  sified with wolv
+0f0  65 73 2c 20 63 6f 79 6f 74 65 73 2c 20 6a 61 63  es, coyotes, jac
+100  6b 61 6c 73 2c 20 61 6e 64 20 66 6f 78 65 73 20  kals, and foxes 
+110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
+120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
+```
+
+Key:
+```
+000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
+016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+```
+
+IV:
+```
+000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+016  50 51 52 53 54 55 56 58                          PQRSTUVX
+```
+
+Ciphertext:
+```
+000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
+010  50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
+020  8d 8d 64 10 d5 40 a1 a6 37 5b 26 d8 0d ac e4 fa  ..d..@..7[&.....
+030  b5 23 84 c7 31 ac bf 16 a5 92 3c 0c 48 d3 57 5d  .#..1.....<.H.W]
+040  4d 0d 2c 67 3b 66 6f aa 73 10 61 27 77 01 09 3a  M.,g;fo.s.a'w..:
+050  6b f7 a1 58 a8 86 42 92 a4 1c 48 e3 a9 b4 c0 da  k..X..B...H.....
+060  ec e0 f8 d9 8d 0d 7e 05 b3 7a 30 7b bb 66 33 31  ......~..z0{.f31
+070  64 ec 9e 1b 24 ea 0d 6c 3f fd dc ec 4f 68 e7 44  d...$..l?...Oh.D
+080  30 56 19 3a 03 c8 10 e1 13 44 ca 06 d8 ed 8a 2b  0V.:.....D.....+
+090  fb 1e 8d 48 cf a6 bc 0e b4 e2 46 4b 74 81 42 40  ...H......FKt.B@
+0a0  7c 9f 43 1a ee 76 99 60 e1 5b a8 b9 68 90 46 6e  |.C..v.`.[..h.Fn
+0b0  f2 45 75 99 85 23 85 c6 61 f7 52 ce 20 f9 da 0c  .Eu..#..a.R. ...
+0c0  09 ab 6b 19 df 74 e7 6a 95 96 74 46 f8 d0 fd 41  ..k..t.j..tF...A
+0d0  5e 7b ee 2a 12 a1 14 c2 0e b5 29 2a e7 a3 49 ae  ^{.*......)*..I.
+0e0  57 78 20 d5 52 0a 1f 3f b6 2a 17 ce 6a 7e 68 fa  Wx .R..?.*..j~h.
+0f0  7c 79 11 1d 88 60 92 0b c0 48 ef 43 fe 84 48 6c  |y...`...H.C..Hl
+100  cb 87 c2 5f 0a e0 45 f0 cc e1 e7 98 9a 9a a2 20  ..._..E........ 
+110  a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
+120  93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
+```
