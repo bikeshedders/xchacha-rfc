@@ -180,8 +180,8 @@ HChaCha20 will then return only the first and last rows, resulting
 in the following 256-bit key:
 
 ~~~
-82413b4 227b27bfe d30e4250 8a877d73
-a0f9e4d 58a74a853 c12ec413 26d3ecdc
+82413b42 27b27bfe d30e4250 8a877d73
+a0f9e4d5 8a74a853 c12ec413 26d3ecdc
 ~~~
 Figure: Resultant HChaCha20 subkey
 
