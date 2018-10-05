@@ -146,7 +146,7 @@ Internet-Draft                                              October 2018
    libsodium [5], Monocypher [6], xsecretbox [7], Tink [8], and in Go's
    crypto/chacha20poly1305 [9] library.
 
-   Similarly, Google's HPolyC [10] implements XChaCha12-Poly1305.
+   Similarly, Google's HPolyC [10] implements XChaCha12.
 
 2.1.  Motivation for XChaCha20-Poly1305
 

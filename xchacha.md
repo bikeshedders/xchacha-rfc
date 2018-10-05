@@ -88,7 +88,7 @@ XChaCha20-Poly1305 implementations already exist in
 and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
 
 Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
-XChaCha12-Poly1305.
+XChaCha12.
 
 ## Motivation for XChaCha20-Poly1305
 
