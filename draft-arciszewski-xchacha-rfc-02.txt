@@ -88,8 +88,11 @@ Table of Contents
      3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
    Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   7
      A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   7
-     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .   8
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   9
+     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .   9
+     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  10
+       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  10
+       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  11
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
@@ -102,9 +105,6 @@ Table of Contents
    proposed over the years, including AES-SIV ([RFC5297]), AES-GCM-SIV
    [2], and several CAESAR candidates [3].
 
-   However, a more straightforward strategy can prevent nonce misuse
-   conditions in environments where a large number of messages are
-   encrypted.  Simply use a large enough nonce such that applications
 
 
 
@@ -114,6 +114,9 @@ Arciszewski               Expires April 8, 2019                 [Page 2]
 Internet-Draft                                              October 2018
 
 
+   However, a more straightforward strategy can prevent nonce misuse
+   conditions in environments where a large number of messages are
+   encrypted.  Simply use a large enough nonce such that applications
    can generate them randomly for each message and the probability of a
    collision remains low.
 
@@ -160,9 +163,6 @@ Internet-Draft                                              October 2018
    use of only the first 128 bits of the nonce isn't security-affecting,
    as the nonce derived from the latter 64 bits is different.
 
-   Assuming a secure random number generator, random 192-bit nonces
-   should experience a single collision (with probability 50%) after
-
 
 
 Arciszewski               Expires April 8, 2019                 [Page 3]
@@ -170,6 +170,8 @@ Arciszewski               Expires April 8, 2019                 [Page 3]
 Internet-Draft                                              October 2018
 
 
+   Assuming a secure random number generator, random 192-bit nonces
+   should experience a single collision (with probability 50%) after
    roughly 2^96 messages (approximately 7.2998163e+28).  A more
    conservative threshold (2^-32 chance of collision) still allows for
    2^64 messages to be sent under a single key.
@@ -213,8 +215,6 @@ Internet-Draft                                              October 2018
    Once the 20 ChaCha rounds have been completed, the first 128 bits and
    last 128 bits of the ChaCha state (both little-endian) are
    concatenated, and this 256-bit subkey is returned.
-
-
 
 
 
@@ -304,6 +304,10 @@ Internet-Draft                                              October 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
+              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
+              <https://www.rfc-editor.org/info/rfc4648>.
+
    [RFC5297]  Harkins, D., "Synthetic Initialization Vector (SIV)
               Authenticated Encryption Using the Advanced Encryption
               Standard (AES)", RFC 5297, DOI 10.17487/RFC5297, October
@@ -327,16 +331,16 @@ Internet-Draft                                              October 2018
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
        xchacha20-poly1305_construction.html
 
-   [6] https://monocypher.org/manual/aead
-
-   [7] https://github.com/jedisct1/xsecretbox
-
 
 
 Arciszewski               Expires April 8, 2019                 [Page 6]
 
 Internet-Draft                                              October 2018
 
+
+   [6] https://monocypher.org/manual/aead
+
+   [7] https://github.com/jedisct1/xsecretbox
 
    [8] https://github.com/google/tink
 
@@ -367,23 +371,19 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
     000  50 51 52 53 c0 c1 c2 c3 c4 c5 c6 c7              PQRS........
 
+
+
+
+
+
+
+
+
+
+
+
+
    Key:
-
-  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
-  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
-
-   IV:
-
-  000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
-  016  50 51 52 53 54 55 56 57                          PQRSTUVW
-
-
-
-
-
-
-
-
 
 
 
@@ -393,6 +393,14 @@ Arciszewski               Expires April 8, 2019                 [Page 7]
 
 Internet-Draft                                              October 2018
 
+
+  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
+  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+   IV:
+
+  000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+  016  50 51 52 53 54 55 56 57                          PQRSTUVW
 
    32-bit fixed-common part:
 
@@ -415,7 +423,32 @@ Internet-Draft                                              October 2018
   112  b5 2e                                            ..
 
    Tag:
-   c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
+
+              c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski               Expires April 8, 2019                 [Page 8]
+
+Internet-Draft                                              October 2018
+
 
 A.2.  Example and Test Vector for XChaCha20
 
@@ -443,13 +476,6 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-
-
-Arciszewski               Expires April 8, 2019                 [Page 8]
-
-Internet-Draft                                              October 2018
-
-
    Key:
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
@@ -461,6 +487,24 @@ Internet-Draft                                              October 2018
   016  50 51 52 53 54 55 56 58                          PQRSTUVX
 
    Ciphertext:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski               Expires April 8, 2019                 [Page 9]
+
+Internet-Draft                                              October 2018
+
 
   000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
   010  50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
@@ -482,6 +526,109 @@ Internet-Draft                                              October 2018
   110  a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
   120  93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
 
+A.3.  Developer-Friendly Test Vectors
+
+   For the sake of usability, the above test vectors have been
+   reproduced in a format more readily usable by implementors.
+
+   All values below are hex-encoded, as per RFC 4648 [RFC4648].
+
+A.3.1.  AEAD_XCHACHA20_POLY1305
+
+   Plaintext:
+
+     4c616469657320616e642047656e746c656d656e206f662074686520636c6173
+     73206f66202739393a204966204920636f756c64206f6666657220796f75206f
+     6e6c79206f6e652074697020666f7220746865206675747572652c2073756e73
+     637265656e20776f756c642062652069742e
+
+   AAD:
+
+                         50515253c0c1c2c3c4c5c6c7
+
+   Key:
+
+     808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
+
+   IV:
+
+             404142434445464748494a4b4c4d4e4f5051525354555657
+
+
+
+
+Arciszewski               Expires April 8, 2019                [Page 10]
+
+Internet-Draft                                              October 2018
+
+
+   32-bit fixed-common part:
+
+                                 00000000
+
+   Poly1305 Key:
+
+     7b191f80f361f099094f6f4b8fb97df847cc6873a8f2b190dd73807183f907d5
+
+   Ciphertext:
+
+     bd6d179d3e83d43b9576579493c0e939572a1700252bfaccbed2902c21396cbb
+     731c7f1b0b4aa6440bf3a82f4eda7e39ae64c6708c54c216cb96b72e1213b452
+     2f8c9ba40db5d945b11b69b982c1bb9e3f3fac2bc369488f76b2383565d3fff9
+     21f9664c97637da9768812f615c68b13b52e
+
+   Tag:
+
+                     c0875924c1c7987947deafd8780acf49
+
+A.3.2.  XChaCha20
+
+   Plaintext:
+
+     5468652064686f6c65202870726f6e6f756e6365642022646f6c652229206973
+     20616c736f206b6e6f776e2061732074686520417369617469632077696c6420
+     646f672c2072656420646f672c20616e642077686973746c696e6720646f672e
+     2049742069732061626f7574207468652073697a65206f662061204765726d61
+     6e20736865706865726420627574206c6f6f6b73206d6f7265206c696b652061
+     206c6f6e672d6c656767656420666f782e205468697320686967686c7920656c
+     757369766520616e6420736b696c6c6564206a756d70657220697320636c6173
+     736966696564207769746820776f6c7665732c20636f796f7465732c206a6163
+     6b616c732c20616e6420666f78657320696e20746865207461786f6e6f6d6963
+     2066616d696c792043616e696461652e
+
+   Key:
+
+     808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
+
+   IV:
+
+             404142434445464748494a4b4c4d4e4f5051525354555658
+
+   Ciphertext:
+
+
+
+
+
+
+
+
+Arciszewski               Expires April 8, 2019                [Page 11]
+
+Internet-Draft                                              October 2018
+
+
+     4559abba4e48c16102e8bb2c05e6947f50a786de162f9b0b7e592a9b53d0d4e9
+     8d8d6410d540a1a6375b26d80dace4fab52384c731acbf16a5923c0c48d3575d
+     4d0d2c673b666faa731061277701093a6bf7a158a8864292a41c48e3a9b4c0da
+     ece0f8d98d0d7e05b37a307bbb66333164ec9e1b24ea0d6c3ffddcec4f68e744
+     3056193a03c810e11344ca06d8ed8a2bfb1e8d48cfa6bc0eb4e2464b74814240
+     7c9f431aee769960e15ba8b96890466ef2457599852385c661f752ce20f9da0c
+     09ab6b19df74e76a95967446f8d0fd415e7bee2a12a114c20eb5292ae7a349ae
+     577820d5520a1f3fb62a17ce6a7e68fa7c79111d8860920bc048ef43fe84486c
+     cb87c25f0ae045f0cce1e7989a9aa220a28bdd4827e751a24a6d5c62d790a663
+     93b93111c1a55dd7421a10184974c7c5
+
 Author's Address
 
    Scott Arciszewski
@@ -501,4 +648,25 @@ Author's Address
 
 
 
-Arciszewski               Expires April 8, 2019                 [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski               Expires April 8, 2019                [Page 12]
