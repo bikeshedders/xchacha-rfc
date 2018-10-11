@@ -256,8 +256,8 @@ for its final output.
 The reliance on public computation for the security proof makes sense, and
 can be applied to ChaCha with a slight tweak.
 
-ChaCha is a slightly different than Salsa20: The constants occupy the indices
-at 0, 1, 2, 3. Meanwhile, the nonce populates indices 12, 13, 14, 15.
+ChaCha is a slightly different construction than Salsa20: The constants occupy
+the indices at 0, 1, 2, 3. Meanwhile, the nonce populates indices 12, 13, 14, 15.
  
 Consequently, we can extract a public computation from ChaCha20 by selecting
 these indices from HChaCha20's final state, and the same security proof can
