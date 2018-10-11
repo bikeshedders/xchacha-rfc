@@ -213,6 +213,61 @@ xchacha20_encrypt(key, nonce, plaintext):
     return chacha20_encrypt(subkey, nonce[16:23], plaintext)
 ```
 
+# Security Considerations
+
+The security of the XChaCha construction depends on both the security
+of the ChaCha stream cipher and the HChaCha intermediary step, for
+reasons explained in [the XSalsa20 paper](https://cr.yp.to/snuffle/xsalsa-20110204.pdf)
+(which our XChaCha construction is derived from).
+
+Given that the 20-round ChaCha stream cipher (ChaCha20) is believed
+to be at least as secure as Salsa20, our only relevant security
+consideration involves HChaCha20.
+
+## Proving XChaCha20 to be Secure
+
+In the XSalsa20 paper, when HSalsa20 is defined, the author states,
+"The indices 0, 5, 10, 15, 6, 7, 8, 9 here were not chosen arbitrarily;
+the choice is important for the security proof later in this paper."
+
+In the analysis of Theorem 3.1 from the same paper (which covers generalized
+cascades), the author further states: "Note that this bound is affected
+less by the insecurity of H than by the insecurity of S."
+
+This means that the security of HSalsa20 affects the security of
+XSalsa20 less than Salsa20 does, and the same applies to any generalized
+cascade following a similar construction.
+ 
+However, we want to be sure that HChaCha20 is secure even if it's less
+security-affecting than ChaCha20 (which we already believe to be secure).
+
+In Salsa20, the indices 0, 5, 10, 15 were populated with constants, while
+the indices 6, 7, 8, and 9 were populated by the nonce. The security proof
+for HSalsa20 relies on the definition of a function Q (specified in Theorem
+3.3 of the paper) that provides two critical properties:
+
+1. Q(i) is a public computation of H(i) and S(i).
+2. Q(i) is a public computation of uniform random strings from uniform random
+   strings.
+
+The reliance on public computation for the security proof makes sense, and
+can be applied to ChaCha with a slight tweak.
+
+ChaCha is a slightly different than Salsa20: The constants occupy the indices
+at 0, 1, 2, 3. Meanwhile, the nonce populates indices 12, 13, 14, 15.
+ 
+Consequently, we can extract a public computation from ChaCha20 by selecting
+these indices from HChaCha20's final state, and the same security proof can
+be used.
+
+# IANA Considerations
+
+This document defines a new stream cipher ("XChaCha20", see (#xchacha20)) and a
+new AEAD cipher construction ("XChaCha20-Poly1305", see (#aeadxchacha20poly1305)).
+
+A new entry in the "Authenticated Encryption with Associated Data (AEAD) Parameters"
+registry with the name "AEAD_XCHACHA20_POLY1305" should be assigned. 
+
 {backmatter}
 
 # Additional Test Vectors
