@@ -267,8 +267,8 @@ Therefore, if the argument that makes HSalsa20 secure is valid, then it also
 applies to HChaCha for the corresponding output indices.
 
 ```
-HSalsa20: 0, 5, 10, 15,  6,  7,  8,  9
-HChaCha:  0, 1,  2,  3, 12, 13, 14, 15
+HSalsa20:  0,  5, 10, 15,  6,  7,  8,  9
+HChaCha:   0,  1,  2,  3, 12, 13, 14, 15
 ```
 Figure: Input and output indices for the relevant security proof
 
