@@ -3,7 +3,7 @@
     title = "XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305"
     abbr = "XChaCha"
     category = "info"
-    docname = "draft-arciszewski-xchacha-01"
+    docname = "draft-arciszewski-xchacha-02"
     workgroup = "(No Working Group)"
     keyword = ["encryption", "AEAD", "cryptography", "security", "authenticated encryption"]
     
