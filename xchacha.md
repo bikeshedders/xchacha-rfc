@@ -238,8 +238,8 @@ This means that the security of HSalsa20 affects the security of
 XSalsa20 less than Salsa20 does, and the same applies to any generalized
 cascade following a similar construction.
  
-However, we want to be sure that HChaCha20 is secure even if it's less
-security-affecting than ChaCha20 (which we already believe to be secure).
+However, we want to be sure that HChaCha is secure even if it's less
+security-affecting than ChaCha (which we already believe to be secure).
 
 In Salsa20, the indices 0, 5, 10, 15 were populated with constants, while
 the indices 6, 7, 8, and 9 were populated by the nonce. The security proof
@@ -250,6 +250,9 @@ for HSalsa20 relies on the definition of a function Q (specified in Theorem
 2. Q(i) is a public computation of uniform random strings from uniform random
    strings.
 
+Thus, HSalsa20 uses the same indices as the public inputs (constant + nonce)
+for its final output.
+
 The reliance on public computation for the security proof makes sense, and
 can be applied to ChaCha with a slight tweak.
 
@@ -259,6 +262,18 @@ at 0, 1, 2, 3. Meanwhile, the nonce populates indices 12, 13, 14, 15.
 Consequently, we can extract a public computation from ChaCha20 by selecting
 these indices from HChaCha20's final state, and the same security proof can
 be used.
+
+Therefore, if the argument that makes HSalsa20 secure is valid, then it also
+applies to HChaCha for the corresponding output indices.
+
+```
+HSalsa20: 0, 5, 10, 15,  6,  7,  8,  9
+HChaCha:  0, 1,  2,  3, 12, 13, 14, 15
+```
+Figure: Input and output indices for the relevant security proof
+
+If the 20-round HChaCha (HChaCha20) is secure, and the 20-round ChaCha20 is
+secure, then XChaCha20 is also secure.
 
 # IANA Considerations
 
