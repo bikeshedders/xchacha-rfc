@@ -5,16 +5,6 @@ use ParagonIE_Sodium_Compat as Sodium;
 
 require 'vendor/autoload.php';
 
-function testVector(
-    string $plaintext,
-    string $key,
-    string $aad,
-    string $iv,
-    string $expected
-): bool {
-
-}
-
 /**
  * Test vector #1
  *
