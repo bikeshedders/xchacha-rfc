@@ -304,18 +304,6 @@ Plaintext:
 AAD:
 ```
 000  50 51 52 53 c0 c1 c2 c3 c4 c5 c6 c7              PQRS........
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 Key:
@@ -333,6 +321,18 @@ IV:
 32-bit fixed-common part:
 ```
 000  00 00 00 00                                      ....
+
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 Poly1305 Key:
@@ -356,19 +356,6 @@ Ciphertext:
 Tag:
 ```  
 c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 ## Example and Test Vector for XChaCha20
@@ -394,8 +381,6 @@ Plaintext:
 100  6b 61 6c 73 2c 20 61 6e 64 20 66 6f 78 65 73 20  kals, and foxes 
 110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
 120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
-
-
 ```
 
 Key:
@@ -453,6 +438,7 @@ Plaintext:
 AAD:
 ```
 50515253c0c1c2c3c4c5c6c7
+
 ```
 
 Key:
@@ -507,6 +493,8 @@ Plaintext:
 Key:
 ```
 808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
+
+
 ```
 
 IV:

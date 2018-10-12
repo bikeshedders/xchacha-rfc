@@ -83,16 +83,19 @@ Table of Contents
        2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   5
      2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   5
        2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   6
-   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
-     3.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
-   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   7
-     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   7
-     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .   9
-     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  10
-       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  10
-       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  11
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  12
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Proving XChaCha20 to be Secure  . . . . . . . . . . . . .   6
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
+     5.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   9
+     A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   9
+     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .  10
+     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  11
+       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  11
+       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  12
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  13
 
 1.  Introduction
 
@@ -101,9 +104,6 @@ Table of Contents
    of adaptive chosen-ciphertext attacks, but they're known to be
    brittle to nonce-misuse conditions [1].
 
-   Several nonce misuse resistant cipher constructions have been
-   proposed over the years, including AES-SIV ([RFC5297]), AES-GCM-SIV
-   [2], and several CAESAR candidates [3].
 
 
 
@@ -113,6 +113,10 @@ Arciszewski              Expires April 14, 2019                 [Page 2]
 
 Internet-Draft                                              October 2018
 
+
+   Several nonce misuse resistant cipher constructions have been
+   proposed over the years, including AES-SIV ([RFC5297]), AES-GCM-SIV
+   [2], and several CAESAR candidates [3].
 
    However, a more straightforward strategy can prevent nonce misuse
    conditions in environments where a large number of messages are
@@ -157,11 +161,7 @@ Internet-Draft                                              October 2018
    safely use with random strings for long-lived keys.
    XChaCha20-Poly1305 does not have this restriction.
 
-   By generating a subkey from a 128-bit nonce and the key, a reuse of
-   only the latter 64 bits of the nonce isn't security-affecting, since
-   the key (and thus, keystream) will be different.  Additionally a re-
-   use of only the first 128 bits of the nonce isn't security-affecting,
-   as the nonce derived from the latter 64 bits is different.
+
 
 
 
@@ -169,6 +169,12 @@ Arciszewski              Expires April 14, 2019                 [Page 3]
 
 Internet-Draft                                              October 2018
 
+
+   By generating a subkey from a 128-bit nonce and the key, a reuse of
+   only the latter 64 bits of the nonce isn't security-affecting, since
+   the key (and thus, keystream) will be different.  Additionally a re-
+   use of only the first 128 bits of the nonce isn't security-affecting,
+   as the nonce derived from the latter 64 bits is different.
 
    Assuming a secure random number generator, random 192-bit nonces
    should experience a single collision (with probability 50%) after
@@ -212,12 +218,6 @@ Internet-Draft                                              October 2018
 
    After initialization, proceed through the ChaCha rounds as usual.
 
-   Once the 20 ChaCha rounds have been completed, the first 128 bits and
-   last 128 bits of the ChaCha state (both little-endian) are
-   concatenated, and this 256-bit subkey is returned.
-
-
-
 
 
 
@@ -225,6 +225,10 @@ Arciszewski              Expires April 14, 2019                 [Page 4]
 
 Internet-Draft                                              October 2018
 
+
+   Once the 20 ChaCha rounds have been completed, the first 128 bits and
+   last 128 bits of the ChaCha state (both little-endian) are
+   concatenated, and this 256-bit subkey is returned.
 
 2.2.1.  Test Vector for the HChaCha20 Block Function
 
@@ -270,10 +274,6 @@ Internet-Draft                                              October 2018
    1.  Pass the key and the first 16 bytes of the 24-byte nonce to
        HChaCha20 to obtain the subkey.
 
-   2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
-       (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
-       nonce).
-
 
 
 
@@ -281,6 +281,10 @@ Arciszewski              Expires April 14, 2019                 [Page 5]
 
 Internet-Draft                                              October 2018
 
+
+   2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
+       (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
+       nonce).
 
    XChaCha20 is a stream cipher and offers no integrity guarantees
    without being combined with a MAC algorithm (e.g.  Poly1305).
@@ -295,9 +299,104 @@ Internet-Draft                                              October 2018
            subkey = hchacha20(key, nonce[0:15])
            return chacha20_encrypt(subkey, nonce[16:23], plaintext)
 
-3.  References
+3.  Security Considerations
 
-3.1.  Normative References
+   The security of the XChaCha construction depends on both the security
+   of the ChaCha stream cipher and the HChaCha intermediary step, for
+   reasons explained in the XSalsa20 paper [13] (which our XChaCha
+   construction is derived from).
+
+   Given that the 20-round ChaCha stream cipher (ChaCha20) is believed
+   to be at least as secure as Salsa20, our only relevant security
+   consideration involves HChaCha20.
+
+3.1.  Proving XChaCha20 to be Secure
+
+   In the XSalsa20 paper, when HSalsa20 is defined, the author states,
+   "The indices 0, 5, 10, 15, 6, 7, 8, 9 here were not chosen
+   arbitrarily; the choice is important for the security proof later in
+   this paper."
+
+   In the analysis of Theorem 3.1 from the same paper (which covers
+   generalized cascades), the author further states: "Note that this
+   bound is affected less by the insecurity of H than by the insecurity
+   of S."
+
+   This means that the security of HSalsa20 affects the security of
+   XSalsa20 less than Salsa20 does, and the same applies to any
+   generalized cascade following a similar construction.
+
+   However, we want to be sure that HChaCha is secure even if it's less
+   security-affecting than ChaCha (which we already believe to be
+   secure).
+
+
+
+
+Arciszewski              Expires April 14, 2019                 [Page 6]
+
+Internet-Draft                                              October 2018
+
+
+   In Salsa20, the indices 0, 5, 10, 15 were populated with constants,
+   while the indices 6, 7, 8, and 9 were populated by the nonce.  The
+   security proof for HSalsa20 relies on the definition of a function Q
+   (specified in Theorem 3.3 of the paper) that provides two critical
+   properties:
+
+   1.  Q(i) is a public computation of H(i) and S(i).
+
+   2.  Q(i) is a public computation of uniform random strings from
+       uniform random strings.
+
+   Thus, HSalsa20 uses the same indices as the public inputs (constant +
+   nonce) for its final output.
+
+   The reliance on public computation for the security proof makes
+   sense, and can be applied to ChaCha with a slight tweak.
+
+   ChaCha is a slightly different construction than Salsa20: The
+   constants occupy the indices at 0, 1, 2, 3.  Meanwhile, the nonce
+   populates indices 12, 13, 14, 15.
+
+   Consequently, we can extract a public computation from ChaCha20 by
+   selecting these indices from HChaCha20's final state as the HChaCha20
+   output, and the same security proof can be used.
+
+   Therefore, if the argument that makes HSalsa20 secure is valid, then
+   it also applies to HChaCha for the corresponding output indices.
+
+                 HSalsa20:  0,  5, 10, 15,  6,  7,  8,  9
+                 HChaCha:   0,  1,  2,  3, 12, 13, 14, 15
+
+         Input and output indices for the relevant security proof
+
+   If the 20-round HChaCha (HChaCha20) is secure, and the 20-round
+   ChaCha20 is secure, then XChaCha20 is also secure.
+
+4.  IANA Considerations
+
+   This document defines a new stream cipher ("XChaCha20", see
+   Section 2.3) and a new AEAD cipher construction
+   ("XChaCha20-Poly1305", see Section 2).
+
+   A new entry in the "Authenticated Encryption with Associated Data
+   (AEAD) Parameters" registry with the name "AEAD_XCHACHA20_POLY1305"
+   should be assigned.
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                 [Page 7]
+
+Internet-Draft                                              October 2018
+
+
+5.  References
+
+5.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -317,7 +416,7 @@ Internet-Draft                                              October 2018
               Protocols", RFC 7539, DOI 10.17487/RFC7539, May 2015,
               <https://www.rfc-editor.org/info/rfc7539>.
 
-3.2.  URIs
+5.2.  URIs
 
    [1] https://cryptologie.net/article/361/breaking-https-aes-gcm-or-a-
        part-of-it/
@@ -331,13 +430,6 @@ Internet-Draft                                              October 2018
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
        xchacha20-poly1305_construction.html
 
-
-
-Arciszewski              Expires April 14, 2019                 [Page 6]
-
-Internet-Draft                                              October 2018
-
-
    [6] https://monocypher.org/manual/aead
 
    [7] https://github.com/jedisct1/xsecretbox
@@ -350,7 +442,17 @@ Internet-Draft                                              October 2018
 
    [11] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
+
+
+
+Arciszewski              Expires April 14, 2019                 [Page 8]
+
+Internet-Draft                                              October 2018
+
+
    [12] https://nacl.cr.yp.to
+
+   [13] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
 Appendix A.  Additional Test Vectors
 
@@ -371,28 +473,7 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
     000  50 51 52 53 c0 c1 c2 c3 c4 c5 c6 c7              PQRS........
 
-
-
-
-
-
-
-
-
-
-
-
-
    Key:
-
-
-
-
-
-Arciszewski              Expires April 14, 2019                 [Page 7]
-
-Internet-Draft                                              October 2018
-
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
   016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
@@ -405,6 +486,25 @@ Internet-Draft                                              October 2018
    32-bit fixed-common part:
 
         000  00 00 00 00                                      ....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                 [Page 9]
+
+Internet-Draft                                              October 2018
+
 
    Poly1305 Key:
 
@@ -425,30 +525,6 @@ Internet-Draft                                              October 2018
    Tag:
 
               c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Arciszewski              Expires April 14, 2019                 [Page 8]
-
-Internet-Draft                                              October 2018
-
 
 A.2.  Example and Test Vector for XChaCha20
 
@@ -474,12 +550,17 @@ A.2.  Example and Test Vector for XChaCha20
   110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
   120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
 
-
-
    Key:
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
   016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 10]
+
+Internet-Draft                                              October 2018
+
 
    IV:
 
@@ -487,24 +568,6 @@ A.2.  Example and Test Vector for XChaCha20
   016  50 51 52 53 54 55 56 58                          PQRSTUVX
 
    Ciphertext:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Arciszewski              Expires April 14, 2019                 [Page 9]
-
-Internet-Draft                                              October 2018
-
 
   000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
   010  50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
@@ -546,6 +609,15 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
 
                          50515253c0c1c2c3c4c5c6c7
 
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 11]
+
+Internet-Draft                                              October 2018
+
+
    Key:
 
      808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
@@ -553,14 +625,6 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
    IV:
 
              404142434445464748494a4b4c4d4e4f5051525354555657
-
-
-
-
-Arciszewski              Expires April 14, 2019                [Page 10]
-
-Internet-Draft                                              October 2018
-
 
    32-bit fixed-common part:
 
@@ -600,23 +664,21 @@ A.3.2.  XChaCha20
 
      808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
 
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 12]
+
+Internet-Draft                                              October 2018
+
+
    IV:
 
              404142434445464748494a4b4c4d4e4f5051525354555658
 
    Ciphertext:
-
-
-
-
-
-
-
-
-Arciszewski              Expires April 14, 2019                [Page 11]
-
-Internet-Draft                                              October 2018
-
 
      4559abba4e48c16102e8bb2c05e6947f50a786de162f9b0b7e592a9b53d0d4e9
      8d8d6410d540a1a6375b26d80dace4fab52384c731acbf16a5923c0c48d3575d
@@ -663,10 +725,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Arciszewski              Expires April 14, 2019                [Page 12]
+Arciszewski              Expires April 14, 2019                [Page 13]
