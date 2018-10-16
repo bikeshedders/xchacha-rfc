@@ -171,15 +171,15 @@ After running 20 rounds (10 column rounds interleaved with 10
 "diagonal rounds"), the HChaCha state looks like this:
 
 ~~~
-82413b42 27b27bfe d30e4250 8a877d73
-4864a70a f3cd5479 37cd6a84 ad583c7b
-8355e377 127ce783 2d6a07e0 e5d06cbc
-a0f9e4d5 8a74a853 c12ec413 26d3ecdc
+423b4182 fe7bb227 50420ed3 737d878a
+0aa76448 7954cdf3 846acd37 7b3c58ad
+77e35583 83e77c12 e0076a2d bc6cd0e5
+d5e4f9a0 53a8748a 13c42ec1 dcecd326
 ~~~
 Figure: HChaCha state after 20 rounds
 
-HChaCha20 will then return only the first and last rows, resulting
-in the following 256-bit key:
+HChaCha20 will then return only the first and last rows, in little
+endian, resulting in the following 256-bit key:
 
 ~~~
 82413b42 27b27bfe d30e4250 8a877d73
