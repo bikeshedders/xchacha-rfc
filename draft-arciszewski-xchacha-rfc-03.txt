@@ -78,14 +78,14 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Notation and Conventions  . . . . . . . . . . . . . . . .   3
    2.  AEAD_XChaCha20_Poly1305 . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   3
+     2.1.  Motivation for XChaCha20-Poly1305 . . . . . . . . . . . .   4
      2.2.  HChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.2.1.  Test Vector for the HChaCha20 Block Function  . . . .   5
-     2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   5
+     2.3.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . . . .   6
        2.3.1.  XChaCha20 Pseudocode  . . . . . . . . . . . . . . . .   6
    3.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
      3.1.  Proving XChaCha20 to be Secure  . . . . . . . . . . . . .   6
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
    5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      5.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
      5.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
@@ -155,11 +155,11 @@ Internet-Draft                                              October 2018
 
    Similarly, Google's HPolyC [10] implements XChaCha12.
 
-2.1.  Motivation for XChaCha20-Poly1305
+   Note that we're building upon uses the IETF's ChaCha20 (96-bit
+   nonce), not Bernstein's ChaCha20 (64-bit nonce).
 
-   The nonce used by the original ChaCha20-Poly1305 is too short to
-   safely use with random strings for long-lived keys.
-   XChaCha20-Poly1305 does not have this restriction.
+
+
 
 
 
@@ -169,6 +169,12 @@ Arciszewski              Expires April 14, 2019                 [Page 3]
 
 Internet-Draft                                              October 2018
 
+
+2.1.  Motivation for XChaCha20-Poly1305
+
+   The nonce used by the original ChaCha20-Poly1305 is too short to
+   safely use with random strings for long-lived keys.
+   XChaCha20-Poly1305 does not have this restriction.
 
    By generating a subkey from a 128-bit nonce and the key, a reuse of
    only the latter 64 bits of the nonce isn't security-affecting, since
@@ -209,14 +215,8 @@ Internet-Draft                                              October 2018
 
            ChaCha20 State: c=constant k=key b=blockcount n=nonce
 
-                  cccccccc  cccccccc  cccccccc  cccccccc
-                  kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
-                  kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
-                  nnnnnnnn  nnnnnnnn  nnnnnnnn  nnnnnnnn
 
-                 HChaCha20 State: c=constant k=key n=nonce
 
-   After initialization, proceed through the ChaCha rounds as usual.
 
 
 
@@ -225,6 +225,15 @@ Arciszewski              Expires April 14, 2019                 [Page 4]
 
 Internet-Draft                                              October 2018
 
+
+                  cccccccc  cccccccc  cccccccc  cccccccc
+                  kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
+                  kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
+                  nnnnnnnn  nnnnnnnn  nnnnnnnn  nnnnnnnn
+
+                 HChaCha20 State: c=constant k=key n=nonce
+
+   After initialization, proceed through the ChaCha rounds as usual.
 
    Once the 20 ChaCha rounds have been completed, the first 128 bits and
    last 128 bits of the ChaCha state (both little-endian) are
@@ -266,6 +275,13 @@ Internet-Draft                                              October 2018
 
                         Resultant HChaCha20 subkey
 
+
+
+Arciszewski              Expires April 14, 2019                 [Page 5]
+
+Internet-Draft                                              October 2018
+
+
 2.3.  XChaCha20
 
    XChaCha20 can be constructed from an existing ChaCha20 implementation
@@ -273,14 +289,6 @@ Internet-Draft                                              October 2018
 
    1.  Pass the key and the first 16 bytes of the 24-byte nonce to
        HChaCha20 to obtain the subkey.
-
-
-
-
-Arciszewski              Expires April 14, 2019                 [Page 5]
-
-Internet-Draft                                              October 2018
-
 
    2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
        (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
@@ -322,14 +330,6 @@ Internet-Draft                                              October 2018
    bound is affected less by the insecurity of H than by the insecurity
    of S."
 
-   This means that the security of HSalsa20 affects the security of
-   XSalsa20 less than Salsa20 does, and the same applies to any
-   generalized cascade following a similar construction.
-
-   However, we want to be sure that HChaCha is secure even if it's less
-   security-affecting than ChaCha (which we already believe to be
-   secure).
-
 
 
 
@@ -337,6 +337,14 @@ Arciszewski              Expires April 14, 2019                 [Page 6]
 
 Internet-Draft                                              October 2018
 
+
+   This means that the security of HSalsa20 affects the security of
+   XSalsa20 less than Salsa20 does, and the same applies to any
+   generalized cascade following a similar construction.
+
+   However, we want to be sure that HChaCha is secure even if it's less
+   security-affecting than ChaCha (which we already believe to be
+   secure).
 
    In Salsa20, the indices 0, 5, 10, 15 were populated with constants,
    while the indices 6, 7, 8, and 9 were populated by the nonce.  The
@@ -374,15 +382,7 @@ Internet-Draft                                              October 2018
    If the 20-round HChaCha (HChaCha20) is secure, and the 20-round
    ChaCha20 is secure, then XChaCha20 is also secure.
 
-4.  IANA Considerations
 
-   This document defines a new stream cipher ("XChaCha20", see
-   Section 2.3) and a new AEAD cipher construction
-   ("XChaCha20-Poly1305", see Section 2).
-
-   A new entry in the "Authenticated Encryption with Associated Data
-   (AEAD) Parameters" registry with the name "AEAD_XCHACHA20_POLY1305"
-   should be assigned.
 
 
 
@@ -393,6 +393,16 @@ Arciszewski              Expires April 14, 2019                 [Page 7]
 
 Internet-Draft                                              October 2018
 
+
+4.  IANA Considerations
+
+   This document defines a new stream cipher ("XChaCha20", see
+   Section 2.3) and a new AEAD cipher construction
+   ("XChaCha20-Poly1305", see Section 2).
+
+   A new entry in the "Authenticated Encryption with Associated Data
+   (AEAD) Parameters" registry with the name "AEAD_XCHACHA20_POLY1305"
+   should be assigned.
 
 5.  References
 
@@ -432,6 +442,14 @@ Internet-Draft                                              October 2018
 
    [6] https://monocypher.org/manual/aead
 
+
+
+
+Arciszewski              Expires April 14, 2019                 [Page 8]
+
+Internet-Draft                                              October 2018
+
+
    [7] https://github.com/jedisct1/xsecretbox
 
    [8] https://github.com/google/tink
@@ -441,14 +459,6 @@ Internet-Draft                                              October 2018
    [10] https://github.com/google/hpolyc
 
    [11] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
-
-
-
-
-Arciszewski              Expires April 14, 2019                 [Page 8]
-
-Internet-Draft                                              October 2018
-
 
    [12] https://nacl.cr.yp.to
 
@@ -486,16 +496,6 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
    32-bit fixed-common part:
 
         000  00 00 00 00                                      ....
-
-
-
-
-
-
-
-
-
-
 
 
 

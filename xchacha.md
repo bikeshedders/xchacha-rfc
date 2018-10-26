@@ -92,6 +92,9 @@ and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chac
 Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
 XChaCha12.
 
+Note that we're building upon uses the IETF's ChaCha20 (96-bit nonce), not
+Bernstein's ChaCha20 (64-bit nonce).
+
 ## Motivation for XChaCha20-Poly1305
 
 The nonce used by the original ChaCha20-Poly1305 is too short to safely use with
@@ -321,17 +324,6 @@ IV:
 32-bit fixed-common part:
 ```
 000  00 00 00 00                                      ....
-
-
-
-
-
-
-
-
-
-
-
 
 ```
 
