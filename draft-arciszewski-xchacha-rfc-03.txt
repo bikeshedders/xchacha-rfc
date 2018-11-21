@@ -404,6 +404,10 @@ Internet-Draft                                              October 2018
    (AEAD) Parameters" registry with the name "AEAD_XCHACHA20_POLY1305"
    should be assigned.
 
+          Name                    | Reference | Number Identifier
+          ------------------------+-----------+------------------
+          AEAD_XCHACHA20_POLY1305 | Section 2 | TBD
+
 5.  References
 
 5.1.  Normative References
@@ -437,10 +441,6 @@ Internet-Draft                                              October 2018
 
    [4] https://www.wireguard.com
 
-   [5] https://download.libsodium.org/doc/secret-key_cryptography/
-       xchacha20-poly1305_construction.html
-
-   [6] https://monocypher.org/manual/aead
 
 
 
@@ -449,6 +449,11 @@ Arciszewski              Expires April 14, 2019                 [Page 8]
 
 Internet-Draft                                              October 2018
 
+
+   [5] https://download.libsodium.org/doc/secret-key_cryptography/
+       xchacha20-poly1305_construction.html
+
+   [6] https://monocypher.org/manual/aead
 
    [7] https://github.com/jedisct1/xsecretbox
 
@@ -493,17 +498,17 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
   000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
   016  50 51 52 53 54 55 56 57                          PQRSTUVW
 
-   32-bit fixed-common part:
-
-        000  00 00 00 00                                      ....
-
-
 
 
 
 Arciszewski              Expires April 14, 2019                 [Page 9]
 
 Internet-Draft                                              October 2018
+
+
+   32-bit fixed-common part:
+
+        000  00 00 00 00                                      ....
 
 
    Poly1305 Key:
@@ -550,17 +555,17 @@ A.2.  Example and Test Vector for XChaCha20
   110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
   120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
 
-   Key:
-
-  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
-  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
-
 
 
 Arciszewski              Expires April 14, 2019                [Page 10]
 
 Internet-Draft                                              October 2018
 
+
+   Key:
+
+  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
+  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
 
    IV:
 
@@ -605,17 +610,17 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
      6e6c79206f6e652074697020666f7220746865206675747572652c2073756e73
      637265656e20776f756c642062652069742e
 
-   AAD:
-
-                         50515253c0c1c2c3c4c5c6c7
-
-
 
 
 
 Arciszewski              Expires April 14, 2019                [Page 11]
 
 Internet-Draft                                              October 2018
+
+
+   AAD:
+
+                         50515253c0c1c2c3c4c5c6c7
 
 
    Key:
@@ -660,11 +665,6 @@ A.3.2.  XChaCha20
      6b616c732c20616e6420666f78657320696e20746865207461786f6e6f6d6963
      2066616d696c792043616e696461652e
 
-   Key:
-
-     808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
-
-
 
 
 
@@ -673,6 +673,10 @@ Arciszewski              Expires April 14, 2019                [Page 12]
 
 Internet-Draft                                              October 2018
 
+
+   Key:
+
+     808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
 
    IV:
 
@@ -698,10 +702,6 @@ Author's Address
    United States
 
    Email: security@paragonie.com
-
-
-
-
 
 
 

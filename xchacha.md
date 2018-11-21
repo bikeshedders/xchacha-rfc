@@ -286,6 +286,12 @@ new AEAD cipher construction ("XChaCha20-Poly1305", see (#aeadxchacha20poly1305)
 A new entry in the "Authenticated Encryption with Associated Data (AEAD) Parameters"
 registry with the name "AEAD_XCHACHA20_POLY1305" should be assigned. 
 
+```
+Name                    | Reference | Number Identifier
+------------------------+-----------+------------------
+AEAD_XCHACHA20_POLY1305 | Section 2 |      TBD1
+```
+
 {backmatter}
 
 # Additional Test Vectors
@@ -480,13 +486,13 @@ Plaintext:
 736966696564207769746820776f6c7665732c20636f796f7465732c206a6163
 6b616c732c20616e6420666f78657320696e20746865207461786f6e6f6d6963
 2066616d696c792043616e696461652e
+
+
 ```
 
 Key:
 ```
 808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
-
-
 ```
 
 IV:
