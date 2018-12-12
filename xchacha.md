@@ -354,9 +354,32 @@ Ciphertext:
 Tag:
 ```  
 c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 ## Example and Test Vector for XChaCha20
+
+Note: This is for the XChaCha20 stream cipher itself, not the AEAD
+construction.
 
 Plaintext:
 ```
@@ -391,6 +414,17 @@ IV:
 ```
 000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
 016  50 51 52 53 54 55 56 58                          PQRSTUVX
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 Keystream:
@@ -535,6 +569,17 @@ cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
 241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290f
 a0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00
 b3df507ca8c924f7017b7e712d15a2eb
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 Ciphertext:

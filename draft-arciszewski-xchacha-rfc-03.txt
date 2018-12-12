@@ -91,11 +91,11 @@ Table of Contents
      5.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
    Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   9
      A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   9
-     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .  10
-     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  11
-       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  11
-       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  12
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  13
+     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .  11
+     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  13
+       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  13
+       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  14
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
 
@@ -406,7 +406,7 @@ Internet-Draft                                              October 2018
 
           Name                    | Reference | Number Identifier
           ------------------------+-----------+------------------
-          AEAD_XCHACHA20_POLY1305 | Section 2 | TBD
+          AEAD_XCHACHA20_POLY1305 | Section 2 |      TBD1
 
 5.  References
 
@@ -531,7 +531,41 @@ Internet-Draft                                              October 2018
 
               c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 10]
+
+Internet-Draft                                              October 2018
+
+
 A.2.  Example and Test Vector for XChaCha20
+
+   Note: This is for the XChaCha20 stream cipher itself, not the AEAD
+   construction.
 
    Plaintext:
 
@@ -555,13 +589,6 @@ A.2.  Example and Test Vector for XChaCha20
   110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
   120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
 
-
-
-Arciszewski              Expires April 14, 2019                [Page 10]
-
-Internet-Draft                                              October 2018
-
-
    Key:
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
@@ -571,6 +598,47 @@ Internet-Draft                                              October 2018
 
   000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
   016  50 51 52 53 54 55 56 58                          PQRSTUVX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 11]
+
+Internet-Draft                                              October 2018
+
+
+   Keystream:
+
+  000: 11 31 ce 9a 2a 20 ae 0d 67 c8 93 5c 77 89 fa 10  .1..* ..g..\w...
+  010: 25 c9 e5 bb 72 0f b9 6f 11 35 4f b9 7a f0 bd 9a  %...r..o.5O.z...
+  020: ad ec 08 63 ba 60 ca c8 58 2c 48 f8 6c df c4 8e  ...c.`..X,H.l...
+  030: dd 46 a4 86 42 c5 de 62 cc f1 1c 7b 21 bf 33 7d  .F..B..b...{!.3}
+  040: 29 62 4b 4b 1b 14 0a ce 53 74 0e 40 5b 21 68 54  )bKK....St.@[!hT
+  050: 0f d7 d6 30 c1 f5 36 fe cd 72 2f c3 cd db a7 f4  ...0..6..r/.....
+  060: cc a9 8c f9 e4 7e 5e 64 d1 15 45 0f 9b 12 5b 54  .....~^d..E...[T
+  070: 44 9f f7 61 41 ca 62 0a 1f 9c fc ab 2a 1a 8a 25  D..aA.b.....*..%
+  080: 5e 76 6a 52 66 b8 78 84 61 20 ea 64 ad 99 aa 47  ^vjRf.x.a .d...G
+  090: 94 71 e6 3b ef cb d3 7c d1 c2 2a 22 1f e4 62 21  .q.;...|..*"..b!
+  0a0: 5c f3 2c 74 89 5b f5 05 86 3c cd dd 48 f6 29 16  \.,t.[...<..H.).
+  0b0: dc 65 21 f1 ec 50 a5 ae 08 90 3a a2 59 d9 bf 60  .e!..P....:.Y..`
+  0c0: 7c d8 02 6f ba 54 86 04 f1 b6 07 2d 91 bc 91 24  |..o.T.....-...$
+  0d0: 3a 5b 84 5f 7f d1 71 b0 2e dc 5a 0a 84 cf 28 dd  :[._..q...Z...(.
+  0e0: 24 11 46 bc 37 6e 3f 48 df 5e 7f ee 1d 11 04 8c  $.F.7n?H.^......
+  0f0: 19 0a 3d 3d eb 0f eb 64 b4 2d 9c 6f de ee 29 0f  ..==...d.-.o..).
+  100: a0 e6 ae 2c 26 c0 24 9e a8 c1 81 f7 e2 ff d1 00  ...,&.$.........
+  110: cb e5 fd 3c 4f 82 71 d6 2b 15 33 0c b8 fd cf 00  ...<O.q.+.3.....
+  120: b3 df 50 7c a8 c9 24 f7 01 7b 7e 71 2d 15 a2 eb  ..P|..$..{~q-...
 
    Ciphertext:
 
@@ -594,6 +662,18 @@ Internet-Draft                                              October 2018
   110  a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
   120  93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
 
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 12]
+
+Internet-Draft                                              October 2018
+
+
 A.3.  Developer-Friendly Test Vectors
 
    For the sake of usability, the above test vectors have been
@@ -609,14 +689,6 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
      73206f66202739393a204966204920636f756c64206f6666657220796f75206f
      6e6c79206f6e652074697020666f7220746865206675747572652c2073756e73
      637265656e20776f756c642062652069742e
-
-
-
-
-Arciszewski              Expires April 14, 2019                [Page 11]
-
-Internet-Draft                                              October 2018
-
 
    AAD:
 
@@ -650,6 +722,14 @@ Internet-Draft                                              October 2018
 
                      c0875924c1c7987947deafd8780acf49
 
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 13]
+
+Internet-Draft                                              October 2018
+
+
 A.3.2.  XChaCha20
 
    Plaintext:
@@ -667,13 +747,6 @@ A.3.2.  XChaCha20
 
 
 
-
-
-Arciszewski              Expires April 14, 2019                [Page 12]
-
-Internet-Draft                                              October 2018
-
-
    Key:
 
      808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
@@ -681,6 +754,37 @@ Internet-Draft                                              October 2018
    IV:
 
              404142434445464748494a4b4c4d4e4f5051525354555658
+
+   Keystream:
+
+     1131ce9a2a20ae0d67c8935c7789fa1025c9e5bb720fb96f11354fb97af0bd9a
+     adec0863ba60cac8582c48f86cdfc48edd46a48642c5de62ccf11c7b21bf337d
+     29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
+     cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
+     5e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe46221
+     5cf32c74895bf505863ccddd48f62916dc6521f1ec50a5ae08903aa259d9bf60
+     7cd8026fba548604f1b6072d91bc91243a5b845f7fd171b02edc5a0a84cf28dd
+     241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290f
+     a0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00
+     b3df507ca8c924f7017b7e712d15a2eb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 14]
+
+Internet-Draft                                              October 2018
+
 
    Ciphertext:
 
@@ -725,4 +829,12 @@ Author's Address
 
 
 
-Arciszewski              Expires April 14, 2019                [Page 13]
+
+
+
+
+
+
+
+
+Arciszewski              Expires April 14, 2019                [Page 15]
