@@ -166,7 +166,7 @@ function tv1(): bool
     return true;
 }
 /**
- * Test vector #1
+ * Test vector #2
  *
  * @return bool
  * @throws SodiumException
