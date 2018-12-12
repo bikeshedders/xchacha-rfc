@@ -393,6 +393,29 @@ IV:
 016  50 51 52 53 54 55 56 58                          PQRSTUVX
 ```
 
+Keystream:
+```
+000: 11 31 ce 9a 2a 20 ae 0d 67 c8 93 5c 77 89 fa 10  .1..* ..g..\w...
+010: 25 c9 e5 bb 72 0f b9 6f 11 35 4f b9 7a f0 bd 9a  %...r..o.5O.z...
+020: ad ec 08 63 ba 60 ca c8 58 2c 48 f8 6c df c4 8e  ...c.`..X,H.l...
+030: dd 46 a4 86 42 c5 de 62 cc f1 1c 7b 21 bf 33 7d  .F..B..b...{!.3}
+040: 29 62 4b 4b 1b 14 0a ce 53 74 0e 40 5b 21 68 54  )bKK....St.@[!hT
+050: 0f d7 d6 30 c1 f5 36 fe cd 72 2f c3 cd db a7 f4  ...0..6..r/.....
+060: cc a9 8c f9 e4 7e 5e 64 d1 15 45 0f 9b 12 5b 54  .....~^d..E...[T
+070: 44 9f f7 61 41 ca 62 0a 1f 9c fc ab 2a 1a 8a 25  D..aA.b.....*..%
+080: 5e 76 6a 52 66 b8 78 84 61 20 ea 64 ad 99 aa 47  ^vjRf.x.a .d...G
+090: 94 71 e6 3b ef cb d3 7c d1 c2 2a 22 1f e4 62 21  .q.;...|..*"..b!
+0a0: 5c f3 2c 74 89 5b f5 05 86 3c cd dd 48 f6 29 16  \.,t.[...<..H.).
+0b0: dc 65 21 f1 ec 50 a5 ae 08 90 3a a2 59 d9 bf 60  .e!..P....:.Y..`
+0c0: 7c d8 02 6f ba 54 86 04 f1 b6 07 2d 91 bc 91 24  |..o.T.....-...$
+0d0: 3a 5b 84 5f 7f d1 71 b0 2e dc 5a 0a 84 cf 28 dd  :[._..q...Z...(.
+0e0: 24 11 46 bc 37 6e 3f 48 df 5e 7f ee 1d 11 04 8c  $.F.7n?H.^......
+0f0: 19 0a 3d 3d eb 0f eb 64 b4 2d 9c 6f de ee 29 0f  ..==...d.-.o..).
+100: a0 e6 ae 2c 26 c0 24 9e a8 c1 81 f7 e2 ff d1 00  ...,&.$.........
+110: cb e5 fd 3c 4f 82 71 d6 2b 15 33 0c b8 fd cf 00  ...<O.q.+.3.....
+120: b3 df 50 7c a8 c9 24 f7 01 7b 7e 71 2d 15 a2 eb  ..P|..$..{~q-...
+```
+
 Ciphertext:
 ```
 000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
@@ -498,6 +521,20 @@ Key:
 IV:
 ```
 404142434445464748494a4b4c4d4e4f5051525354555658
+```
+
+Keystream:
+```
+1131ce9a2a20ae0d67c8935c7789fa1025c9e5bb720fb96f11354fb97af0bd9a
+adec0863ba60cac8582c48f86cdfc48edd46a48642c5de62ccf11c7b21bf337d
+29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
+cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
+5e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe46221
+5cf32c74895bf505863ccddd48f62916dc6521f1ec50a5ae08903aa259d9bf60
+7cd8026fba548604f1b6072d91bc91243a5b845f7fd171b02edc5a0a84cf28dd
+241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290f
+a0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00
+b3df507ca8c924f7017b7e712d15a2eb
 ```
 
 Ciphertext:
