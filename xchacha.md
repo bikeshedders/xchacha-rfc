@@ -381,6 +381,8 @@ c0:87:59:24:c1:c7:98:79:47:de:af:d8:78:0a:cf:49
 Note: This is for the XChaCha20 stream cipher itself, not the AEAD
 construction.
 
+Counter: 1
+
 Plaintext:
 ```
 000  54 68 65 20 64 68 6f 6c 65 20 28 70 72 6f 6e 6f  The dhole (prono
@@ -423,54 +425,52 @@ IV:
 
 
 
-
-
 ```
 
 Keystream:
 ```
-000: 11 31 ce 9a 2a 20 ae 0d 67 c8 93 5c 77 89 fa 10  .1..* ..g..\w...
-010: 25 c9 e5 bb 72 0f b9 6f 11 35 4f b9 7a f0 bd 9a  %...r..o.5O.z...
-020: ad ec 08 63 ba 60 ca c8 58 2c 48 f8 6c df c4 8e  ...c.`..X,H.l...
-030: dd 46 a4 86 42 c5 de 62 cc f1 1c 7b 21 bf 33 7d  .F..B..b...{!.3}
-040: 29 62 4b 4b 1b 14 0a ce 53 74 0e 40 5b 21 68 54  )bKK....St.@[!hT
-050: 0f d7 d6 30 c1 f5 36 fe cd 72 2f c3 cd db a7 f4  ...0..6..r/.....
-060: cc a9 8c f9 e4 7e 5e 64 d1 15 45 0f 9b 12 5b 54  .....~^d..E...[T
-070: 44 9f f7 61 41 ca 62 0a 1f 9c fc ab 2a 1a 8a 25  D..aA.b.....*..%
-080: 5e 76 6a 52 66 b8 78 84 61 20 ea 64 ad 99 aa 47  ^vjRf.x.a .d...G
-090: 94 71 e6 3b ef cb d3 7c d1 c2 2a 22 1f e4 62 21  .q.;...|..*"..b!
-0a0: 5c f3 2c 74 89 5b f5 05 86 3c cd dd 48 f6 29 16  \.,t.[...<..H.).
-0b0: dc 65 21 f1 ec 50 a5 ae 08 90 3a a2 59 d9 bf 60  .e!..P....:.Y..`
-0c0: 7c d8 02 6f ba 54 86 04 f1 b6 07 2d 91 bc 91 24  |..o.T.....-...$
-0d0: 3a 5b 84 5f 7f d1 71 b0 2e dc 5a 0a 84 cf 28 dd  :[._..q...Z...(.
-0e0: 24 11 46 bc 37 6e 3f 48 df 5e 7f ee 1d 11 04 8c  $.F.7n?H.^......
-0f0: 19 0a 3d 3d eb 0f eb 64 b4 2d 9c 6f de ee 29 0f  ..==...d.-.o..).
-100: a0 e6 ae 2c 26 c0 24 9e a8 c1 81 f7 e2 ff d1 00  ...,&.$.........
-110: cb e5 fd 3c 4f 82 71 d6 2b 15 33 0c b8 fd cf 00  ...<O.q.+.3.....
-120: b3 df 50 7c a8 c9 24 f7 01 7b 7e 71 2d 15 a2 eb  ..P|..$..{~q-...
+000: 29 62 4b 4b 1b 14 0a ce 53 74 0e 40 5b 21 68 54  )bKK....St.@[!hT
+010: 0f d7 d6 30 c1 f5 36 fe cd 72 2f c3 cd db a7 f4  ...0..6..r/.....
+020: cc a9 8c f9 e4 7e 5e 64 d1 15 45 0f 9b 12 5b 54  .....~^d..E...[T
+030: 44 9f f7 61 41 ca 62 0a 1f 9c fc ab 2a 1a 8a 25  D..aA.b.....*..%
+040: 5e 76 6a 52 66 b8 78 84 61 20 ea 64 ad 99 aa 47  ^vjRf.x.a .d...G
+050: 94 71 e6 3b ef cb d3 7c d1 c2 2a 22 1f e4 62 21  .q.;...|..*"..b!
+060: 5c f3 2c 74 89 5b f5 05 86 3c cd dd 48 f6 29 16  \.,t.[...<..H.).
+070: dc 65 21 f1 ec 50 a5 ae 08 90 3a a2 59 d9 bf 60  .e!..P....:.Y..`
+080: 7c d8 02 6f ba 54 86 04 f1 b6 07 2d 91 bc 91 24  |..o.T.....-...$
+090: 3a 5b 84 5f 7f d1 71 b0 2e dc 5a 0a 84 cf 28 dd  :[._..q...Z...(.
+0a0: 24 11 46 bc 37 6e 3f 48 df 5e 7f ee 1d 11 04 8c  $.F.7n?H.^......
+0b0: 19 0a 3d 3d eb 0f eb 64 b4 2d 9c 6f de ee 29 0f  ..==...d.-.o..).
+0c0: a0 e6 ae 2c 26 c0 24 9e a8 c1 81 f7 e2 ff d1 00  ...,&.$.........
+0d0: cb e5 fd 3c 4f 82 71 d6 2b 15 33 0c b8 fd cf 00  ...<O.q.+.3.....
+0e0: b3 df 50 7c a8 c9 24 f7 01 7b 7e 71 2d 15 a2 eb  ..P|..$..{~q-...
+0f0: 5c 50 48 44 51 e5 4e 1b 4b 99 5b d8 fd d9 45 97  \PHDQ.N.K.[...E.
+100: bb 94 d7 af 0b 2c 04 df 10 ba 08 90 89 9e d9 29  .....,.........)
+110: 3a 0f 55 b8 ba fa 99 92 64 03 5f 1d 4f be 7f e0  :.U.....d._.O...
+120: aa fa 10 9a 62 37 20 27 e5 0e 10 cd fe cc a1 27  ....b7 '.......'
 ```
 
 Ciphertext:
 ```
-000  45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
-010  50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
-020  8d 8d 64 10 d5 40 a1 a6 37 5b 26 d8 0d ac e4 fa  ..d..@..7[&.....
-030  b5 23 84 c7 31 ac bf 16 a5 92 3c 0c 48 d3 57 5d  .#..1.....<.H.W]
-040  4d 0d 2c 67 3b 66 6f aa 73 10 61 27 77 01 09 3a  M.,g;fo.s.a'w..:
-050  6b f7 a1 58 a8 86 42 92 a4 1c 48 e3 a9 b4 c0 da  k..X..B...H.....
-060  ec e0 f8 d9 8d 0d 7e 05 b3 7a 30 7b bb 66 33 31  ......~..z0{.f31
-070  64 ec 9e 1b 24 ea 0d 6c 3f fd dc ec 4f 68 e7 44  d...$..l?...Oh.D
-080  30 56 19 3a 03 c8 10 e1 13 44 ca 06 d8 ed 8a 2b  0V.:.....D.....+
-090  fb 1e 8d 48 cf a6 bc 0e b4 e2 46 4b 74 81 42 40  ...H......FKt.B@
-0a0  7c 9f 43 1a ee 76 99 60 e1 5b a8 b9 68 90 46 6e  |.C..v.`.[..h.Fn
-0b0  f2 45 75 99 85 23 85 c6 61 f7 52 ce 20 f9 da 0c  .Eu..#..a.R. ...
-0c0  09 ab 6b 19 df 74 e7 6a 95 96 74 46 f8 d0 fd 41  ..k..t.j..tF...A
-0d0  5e 7b ee 2a 12 a1 14 c2 0e b5 29 2a e7 a3 49 ae  ^{.*......)*..I.
-0e0  57 78 20 d5 52 0a 1f 3f b6 2a 17 ce 6a 7e 68 fa  Wx .R..?.*..j~h.
-0f0  7c 79 11 1d 88 60 92 0b c0 48 ef 43 fe 84 48 6c  |y...`...H.C..Hl
-100  cb 87 c2 5f 0a e0 45 f0 cc e1 e7 98 9a 9a a2 20  ..._..E........ 
-110  a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
-120  93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
+000: 7d 0a 2e 6b 7f 7c 65 a2 36 54 26 30 29 4e 06 3b  }..k.|e.6T&0)N.;
+010: 7a b9 b5 55 a5 d5 14 9a a2 1e 4a e1 e4 fb ce 87  z..U......J.....
+020: ec c8 e0 8a 8b 5e 35 0a be 62 2b 2f fa 61 7b 20  .....^5..b+/.a{ 
+030: 2c fa d7 20 32 a3 03 7e 76 ff dc dc 43 76 ee 05  ,.. 2..~v...Cv..
+040: 3a 19 0d 7e 46 ca 1d e0 41 44 85 03 81 b9 cb 29  :..~F...AD.....)
+050: f0 51 91 53 86 b8 a7 10 b8 ac 4d 02 7b 8b 05 0f  .Q.S......M.{...
+060: 7c ba 58 54 e0 28 d5 64 e4 53 b8 a9 68 82 41 73  |.XT.(.d.S..h.As
+070: fc 16 48 8b 89 70 ca c8 28 f1 1a e5 3c ab d2 01  ..H..p..(...<...
+080: 12 f8 71 07 df 24 ee 61 83 d2 27 4f e4 c8 b1 48  ..q..$.a..'O...H
+090: 55 34 ef 2c 5f bc 1e c2 4b fc 36 63 ef aa 08 bc  U4.,_...K.6c....
+0a0: 04 7d 29 d2 50 43 53 2d b8 39 1a 8a 3d 77 6b f4  .}).PCS-.9..=wk.
+0b0: 37 2a 69 55 82 7c cb 0c dd 4a f4 03 a7 ce 4c 63  7*iU.|...J....Lc
+0c0: d5 95 c7 5a 43 e0 45 f0 cc e1 f2 9c 8b 93 bd 65  ...ZC.E........e
+0d0: af c5 97 49 22 f2 14 a4 0b 7c 40 2c db 91 ae 73  ...I"....|@,...s
+0e0: c0 b6 36 15 cd ad 04 80 68 0f 16 51 5a 7a ce 9d  ..6.....h..QZz..
+0f0: 39 23 64 64 32 8a 37 74 3f fc 28 f4 dd b3 24 f4  9#dd2.7t?.(...$.
+100: d0 f5 bb dc 27 0c 65 b1 74 9a 6e ff f1 fb aa 09  ....'.e.t.n.....
+110: 53 61 75 cc d2 9f b9 e6 05 7b 30 73 20 d3 16 83  Sau......{0s ...
+120: 8a 9c 71 f7 0b 5b 59 07 a6 6f 7e a4 9a ad c4 09  ..q..[Y..o~.....
 ```
 
 ## Developer-Friendly Test Vectors
@@ -531,6 +531,8 @@ c0875924c1c7987947deafd8780acf49
 
 ### XChaCha20
 
+Counter: 1
+
 Plaintext:
 ```
 5468652064686f6c65202870726f6e6f756e6365642022646f6c652229206973
@@ -543,8 +545,6 @@ Plaintext:
 736966696564207769746820776f6c7665732c20636f796f7465732c206a6163
 6b616c732c20616e6420666f78657320696e20746865207461786f6e6f6d6963
 2066616d696c792043616e696461652e
-
-
 ```
 
 Key:
@@ -559,8 +559,6 @@ IV:
 
 Keystream:
 ```
-1131ce9a2a20ae0d67c8935c7789fa1025c9e5bb720fb96f11354fb97af0bd9a
-adec0863ba60cac8582c48f86cdfc48edd46a48642c5de62ccf11c7b21bf337d
 29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
 cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
 5e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe46221
@@ -568,7 +566,9 @@ cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
 7cd8026fba548604f1b6072d91bc91243a5b845f7fd171b02edc5a0a84cf28dd
 241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290f
 a0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00
-b3df507ca8c924f7017b7e712d15a2eb
+b3df507ca8c924f7017b7e712d15a2eb5c50484451e54e1b4b995bd8fdd94597
+bb94d7af0b2c04df10ba0890899ed9293a0f55b8bafa999264035f1d4fbe7fe0
+aafa109a62372027e50e10cdfecca127
 
 
 
@@ -584,14 +584,14 @@ b3df507ca8c924f7017b7e712d15a2eb
 
 Ciphertext:
 ```
-4559abba4e48c16102e8bb2c05e6947f50a786de162f9b0b7e592a9b53d0d4e9
-8d8d6410d540a1a6375b26d80dace4fab52384c731acbf16a5923c0c48d3575d
-4d0d2c673b666faa731061277701093a6bf7a158a8864292a41c48e3a9b4c0da
-ece0f8d98d0d7e05b37a307bbb66333164ec9e1b24ea0d6c3ffddcec4f68e744
-3056193a03c810e11344ca06d8ed8a2bfb1e8d48cfa6bc0eb4e2464b74814240
-7c9f431aee769960e15ba8b96890466ef2457599852385c661f752ce20f9da0c
-09ab6b19df74e76a95967446f8d0fd415e7bee2a12a114c20eb5292ae7a349ae
-577820d5520a1f3fb62a17ce6a7e68fa7c79111d8860920bc048ef43fe84486c
-cb87c25f0ae045f0cce1e7989a9aa220a28bdd4827e751a24a6d5c62d790a663
-93b93111c1a55dd7421a10184974c7c5
+7d0a2e6b7f7c65a236542630294e063b7ab9b555a5d5149aa21e4ae1e4fbce87
+ecc8e08a8b5e350abe622b2ffa617b202cfad72032a3037e76ffdcdc4376ee05
+3a190d7e46ca1de04144850381b9cb29f051915386b8a710b8ac4d027b8b050f
+7cba5854e028d564e453b8a968824173fc16488b8970cac828f11ae53cabd201
+12f87107df24ee6183d2274fe4c8b1485534ef2c5fbc1ec24bfc3663efaa08bc
+047d29d25043532db8391a8a3d776bf4372a6955827ccb0cdd4af403a7ce4c63
+d595c75a43e045f0cce1f29c8b93bd65afc5974922f214a40b7c402cdb91ae73
+c0b63615cdad0480680f16515a7ace9d39236464328a37743ffc28f4ddb324f4
+d0f5bbdc270c65b1749a6efff1fbaa09536175ccd29fb9e6057b307320d31683
+8a9c71f70b5b5907a66f7ea49aadc409
 ```
