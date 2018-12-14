@@ -213,7 +213,8 @@ AEAD_XChaCha20_Poly1305, as described in (#aeadxchacha20poly1305).
 ```
 xchacha20_encrypt(key, nonce, plaintext):
     subkey = hchacha20(key, nonce[0:15])
-    return chacha20_encrypt(subkey, nonce[16:23], plaintext)
+    chacha20_nonce = "\x00\x00\x00\x00" + nonce[16:23]
+    return chacha20_encrypt(subkey, 1, chacha20_nonce, plaintext)
 ```
 
 # Security Considerations
