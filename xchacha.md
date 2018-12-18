@@ -52,10 +52,12 @@ Several nonce misuse resistant cipher constructions have been proposed over
 the years, including AES-SIV ([@!RFC5297]), [AES-GCM-SIV](https://eprint.iacr.org/2017/168.pdf),
 and several [CAESAR candidates](https://competitions.cr.yp.to/caesar-submissions.html).
 
-However, a more straightforward strategy can prevent nonce misuse conditions
-in environments where a large number of messages are encrypted. Simply use a 
-large enough nonce such that applications can generate them randomly for each
-message and the probability of a collision remains low.
+However, misuse resistant cipher constructions come at a cost in performance 
+as they must necessarily make two passes over the message to be encrypted. An
+alternative strategy can significantly reduce the chance of accidental nonce
+reuse in environments where a large number of messages are encrypted. Simply
+use a large enough nonce such that applications can generate them randomly for
+each message and the probability of a collision remains low.
 
 To this end, we propose a solution that is already implemented in many software
 projects that extends the nonce of ChaCha20 to 192 bits and uses it to build an
@@ -110,7 +112,7 @@ bits is different.
 Assuming a secure random number generator, random 192-bit nonces should experience
 a single collision (with probability 50%) after roughly 2^96 messages
 (approximately 7.2998163e+28). A more conservative threshold (2^-32 chance of
-collision) still allows for 2^64 messages to be sent under a single key.
+collision) still allows for 2^80 messages to be sent under a single key.
 
 Therefore, with XChaCha20-Poly1305, users can safely generate a random 192-bit
 nonce for each message and not worry about nonce-reuse vulnerabilities.
@@ -126,7 +128,8 @@ construction and security proof used to create
 Salsa20 variant used in [NaCl](https://nacl.cr.yp.to).
 
 HChaCha20 is initialized the same way as the ChaCha cipher, except that
-HChaCha20 uses a 128-bit nonce and has no counter.
+HChaCha20 uses a 128-bit nonce and has no counter. Instead, the block counter
+is replaced by the first 32 bits of the nonce.
 
 Consider the two figures below, where each non-whitespace character represents
 one nibble of information about the ChaCha states (all numbers little-endian): 

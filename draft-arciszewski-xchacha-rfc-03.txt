@@ -118,11 +118,13 @@ Internet-Draft                                              October 2018
    proposed over the years, including AES-SIV ([RFC5297]), AES-GCM-SIV
    [2], and several CAESAR candidates [3].
 
-   However, a more straightforward strategy can prevent nonce misuse
-   conditions in environments where a large number of messages are
-   encrypted.  Simply use a large enough nonce such that applications
-   can generate them randomly for each message and the probability of a
-   collision remains low.
+   However, misuse resistant cipher constructions come at a cost in
+   performance as they must necessarily make two passes over the message
+   to be encrypted.  An alternative strategy can significantly reduce
+   the chance of accidental nonce reuse in environments where a large
+   number of messages are encrypted.  Simply use a large enough nonce
+   such that applications can generate them randomly for each message
+   and the probability of a collision remains low.
 
    To this end, we propose a solution that is already implemented in
    many software projects that extends the nonce of ChaCha20 to 192 bits
@@ -163,8 +165,6 @@ Internet-Draft                                              October 2018
 
 
 
-
-
 Arciszewski              Expires April 14, 2019                 [Page 3]
 
 Internet-Draft                                              October 2018
@@ -186,7 +186,7 @@ Internet-Draft                                              October 2018
    should experience a single collision (with probability 50%) after
    roughly 2^96 messages (approximately 7.2998163e+28).  A more
    conservative threshold (2^-32 chance of collision) still allows for
-   2^64 messages to be sent under a single key.
+   2^80 messages to be sent under a single key.
 
    Therefore, with XChaCha20-Poly1305, users can safely generate a
    random 192-bit nonce for each message and not worry about nonce-reuse
@@ -202,7 +202,8 @@ Internet-Draft                                              October 2018
    extended-nonce Salsa20 variant used in NaCl [12].
 
    HChaCha20 is initialized the same way as the ChaCha cipher, except
-   that HChaCha20 uses a 128-bit nonce and has no counter.
+   that HChaCha20 uses a 128-bit nonce and has no counter.  Instead, the
+   block counter is replaced by the first 32 bits of the nonce.
 
    Consider the two figures below, where each non-whitespace character
    represents one nibble of information about the ChaCha states (all
@@ -214,7 +215,6 @@ Internet-Draft                                              October 2018
                   bbbbbbbb  nnnnnnnn  nnnnnnnn  nnnnnnnn
 
            ChaCha20 State: c=constant k=key b=blockcount n=nonce
-
 
 
 
