@@ -1,4 +1,4 @@
 #!/bin/sh -e
 
-make draft-irtf-cfrg-xchacha-rfc-00.txt
-# rm draft-irtf-cfrg-xchacha-rfc-00.xml
+make draft-irtf-cfrg-xchacha-rfc-01.txt
+rm draft-irtf-cfrg-xchacha-rfc-01.xml
