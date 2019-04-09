@@ -4,12 +4,12 @@
 
 (No Working Group)                                        S. Arciszewski
 Internet-Draft                            Paragon Initiative Enterprises
-Intended status: Informational                         December 18, 2018
-Expires: June 21, 2019
+Intended status: Informational                             April 9, 2019
+Expires: October 11, 2019
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
-                      draft-arciszewski-xchacha-03
+                       draft-irtf-cfrg-xchacha-04
 
 Abstract
 
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 21, 2019.
+   This Internet-Draft will expire on October 11, 2019.
 
 
 
@@ -53,14 +53,14 @@ Status of This Memo
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 1]
+Arciszewski             Expires October 11, 2019                [Page 1]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2019 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 2]
+Arciszewski             Expires October 11, 2019                [Page 2]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    Several nonce misuse resistant cipher constructions have been
@@ -165,9 +165,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 3]
+Arciszewski             Expires October 11, 2019                [Page 3]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 2.1.  Motivation for XChaCha20-Poly1305
@@ -221,9 +221,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 4]
+Arciszewski             Expires October 11, 2019                [Page 4]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
                   cccccccc  cccccccc  cccccccc  cccccccc
@@ -277,9 +277,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 5]
+Arciszewski             Expires October 11, 2019                [Page 5]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 2.3.  XChaCha20
@@ -333,9 +333,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 6]
+Arciszewski             Expires October 11, 2019                [Page 6]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    bound is affected less by the insecurity of H than by the insecurity
@@ -389,9 +389,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 7]
+Arciszewski             Expires October 11, 2019                [Page 7]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 4.  IANA Considerations
@@ -445,9 +445,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 8]
+Arciszewski             Expires October 11, 2019                [Page 8]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
@@ -501,9 +501,9 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski               Expires June 21, 2019                 [Page 9]
+Arciszewski             Expires October 11, 2019                [Page 9]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    32-bit fixed-common part:
@@ -557,9 +557,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 10]
+Arciszewski             Expires October 11, 2019               [Page 10]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 A.2.  Example and Test Vector for XChaCha20
@@ -613,9 +613,9 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 11]
+Arciszewski             Expires October 11, 2019               [Page 11]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    Keystream:
@@ -669,9 +669,9 @@ Internet-Draft                                             December 2018
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 12]
+Arciszewski             Expires October 11, 2019               [Page 12]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 A.3.  Developer-Friendly Test Vectors
@@ -725,9 +725,9 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 13]
+Arciszewski             Expires October 11, 2019               [Page 13]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
 A.3.2.  XChaCha20
@@ -781,9 +781,9 @@ A.3.2.  XChaCha20
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 14]
+Arciszewski             Expires October 11, 2019               [Page 14]
 
-Internet-Draft                                             December 2018
+Internet-Draft                                                April 2019
 
 
    Ciphertext:
@@ -837,4 +837,4 @@ Author's Address
 
 
 
-Arciszewski               Expires June 21, 2019                [Page 15]
+Arciszewski             Expires October 11, 2019               [Page 15]

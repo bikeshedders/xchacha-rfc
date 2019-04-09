@@ -3,11 +3,11 @@
     title = "XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305"
     abbr = "XChaCha"
     category = "info"
-    docname = "draft-arciszewski-xchacha-03"
+    docname = "draft-irtf-cfrg-xchacha-04"
     workgroup = "(No Working Group)"
     keyword = ["encryption", "AEAD", "cryptography", "security", "authenticated encryption"]
     
-    date = 2018-12-18T18:00:00Z
+    date = 2019-04-09T18:00:00Z
     
     [[author]]
     initials="S."
