@@ -26,7 +26,8 @@
 The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
 ChaCha-based ciphersuites to accept a 192-bit nonce with similar guarantees
 to the original construction, except with a much lower probability of nonce
-misuse occurring. This enables XChaCha constructions to be stateless, while
+misuse occurring. This helps for long running TLS connections.
+This also enables XChaCha constructions to be stateless, while
 retaining the same security assumptions as ChaCha.
 
 This document defines XChaCha20, which uses HChaCha20 to convert the
@@ -93,6 +94,9 @@ and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chac
 
 Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
 XChaCha12.
+
+[LibreSSL] LibreSSL has already implemented it 
+[https://github.com/libressl-portable/openbsd/commit/f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-e67c04cb298e3a810d8d68c7893942be]
 
 Note that we're building upon uses the IETF's ChaCha20 (96-bit nonce), not
 Bernstein's ChaCha20 (64-bit nonce).
