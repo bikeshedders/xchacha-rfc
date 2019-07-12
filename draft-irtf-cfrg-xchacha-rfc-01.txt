@@ -152,15 +152,15 @@ Internet-Draft                                                 July 2019
        normal.  The definition for XChaCha20 is given in Section 2.3.
 
    XChaCha20-Poly1305 implementations already exist in WireGuard [4],
-   libsodium [5], Monocypher [6], xsecretbox [7], Tink [8], and in Go's
-   crypto/chacha20poly1305 [9] library.
+   libsodium [5], xsecretbox [6], Tink [7], and in Go's crypto/
+   chacha20poly1305 [8] library.
 
-   Similarly, Google's HPolyC [10] implements XChaCha12.
+   Similarly, Google's HPolyC [9] implements XChaCha12.
 
-   LibreSSL [11] has already implemented XChaCha20-Poly1305.
+   LibreSSL [10] has already implemented XChaCha20-Poly1305.
 
-   Note that we're building upon uses the IETF's ChaCha20 (96-bit
-   nonce), not Bernstein's ChaCha20 (64-bit nonce).
+   Note that the construction we're building upon uses the IETF's
+   ChaCha20 (96-bit nonce), not Bernstein's ChaCha20 (64-bit nonce).
 
 
 
@@ -198,8 +198,8 @@ Internet-Draft                                                 July 2019
 2.2.  HChaCha20
 
    *HChaCha20* is an intermediary step towards XChaCha20 based on the
-   construction and security proof used to create XSalsa20 [12], an
-   extended-nonce Salsa20 variant used in NaCl [13].
+   construction and security proof used to create XSalsa20 [11], an
+   extended-nonce Salsa20 variant used in NaCl [12].
 
    HChaCha20 is initialized the same way as the ChaCha cipher, except
    that HChaCha20 uses a 128-bit nonce and has no counter.  Instead, the
@@ -313,7 +313,7 @@ Internet-Draft                                                 July 2019
 
    The security of the XChaCha construction depends on both the security
    of the ChaCha stream cipher and the HChaCha intermediary step, for
-   reasons explained in the XSalsa20 paper [14] (which our XChaCha
+   reasons explained in the XSalsa20 paper [13] (which our XChaCha
    construction is derived from).
 
    Given that the 20-round ChaCha stream cipher (ChaCha20) is believed
@@ -453,25 +453,23 @@ Internet-Draft                                                 July 2019
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
        xchacha20-poly1305_construction.html
 
-   [6] https://monocypher.org/manual/aead
+   [6] https://github.com/jedisct1/xsecretbox
 
-   [7] https://github.com/jedisct1/xsecretbox
+   [7] https://github.com/google/tink
 
-   [8] https://github.com/google/tink
+   [8] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
 
-   [9] https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX
+   [9] https://github.com/google/hpolyc
 
-   [10] https://github.com/google/hpolyc
-
-   [11] https://github.com/libressl-portable/openbsd/commit/
+   [10] https://github.com/libressl-portable/openbsd/commit/
         f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-
         e67c04cb298e3a810d8d68c7893942be
 
-   [12] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
+   [11] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
-   [13] https://nacl.cr.yp.to
+   [12] https://nacl.cr.yp.to
 
-   [14] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
+   [13] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
 Appendix A.  Additional Test Vectors
 
@@ -496,6 +494,8 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
   016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+
 
 
 
