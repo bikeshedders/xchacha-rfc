@@ -292,21 +292,23 @@ Internet-Draft                                                 July 2019
 
    2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
        (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
-       nonce), with the initial block counter set to 1.
+       nonce).
 
    XChaCha20 is a stream cipher and offers no integrity guarantees
    without being combined with a MAC algorithm (e.g.  Poly1305).
 
    The same HChaCha20 subkey derivation can also be used in the context
    of an AEAD_ChaCha20_Poly1305 implementation to create
-   AEAD_XChaCha20_Poly1305, as described in Section 2.
+   AEAD_XChaCha20_Poly1305, as described in Section 2.  Note that, with
+   the AEAD mode, the initial block counter is set to 1 instead of 0,
+   since the first block is used to derive the one-time Poly1305 key.
 
 2.3.1.  XChaCha20 Pseudocode
 
  xchacha20_encrypt(key, nonce, plaintext):
      subkey = hchacha20(key, nonce[0:15])
      chacha20_nonce = "\x00\x00\x00\x00" + nonce[16:23]
-     blk_ctr = 1
+     blk_ctr = 0
      return chacha20_encrypt(subkey, chacha20_nonce, plaintext, blk_ctr)
 
 3.  Security Considerations
@@ -327,8 +329,6 @@ Internet-Draft                                                 July 2019
    arbitrarily; the choice is important for the security proof later in
    this paper."
 
-   In the analysis of Theorem 3.1 from the same paper (which covers
-   generalized cascades), the author further states: "Note that this
 
 
 
@@ -338,6 +338,8 @@ Arciszewski             Expires January 13, 2020                [Page 6]
 Internet-Draft                                                 July 2019
 
 
+   In the analysis of Theorem 3.1 from the same paper (which covers
+   generalized cascades), the author further states: "Note that this
    bound is affected less by the insecurity of H than by the insecurity
    of S."
 
@@ -384,8 +386,6 @@ Internet-Draft                                                 July 2019
 
    If the 20-round HChaCha (HChaCha20) is secure, and the 20-round
    ChaCha20 is secure, then XChaCha20 is also secure.
-
-
 
 
 

@@ -205,7 +205,7 @@ and HChaCha20. All one needs to do is:
    HChaCha20 to obtain the subkey.
 2. Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
    (prefixed by 4 NUL bytes, since [@!RFC7539] specifies a 12-byte
-   nonce), with the initial block counter set to 1. 
+   nonce). 
 
 XChaCha20 is a stream cipher and offers no integrity guarantees without
 being combined with a MAC algorithm (e.g. Poly1305).
@@ -213,6 +213,9 @@ being combined with a MAC algorithm (e.g. Poly1305).
 The same HChaCha20 subkey derivation can also be used in the context
 of an AEAD_ChaCha20_Poly1305 implementation to create 
 AEAD_XChaCha20_Poly1305, as described in (#aeadxchacha20poly1305).
+Note that, with the AEAD mode, the initial block counter is set to 1
+instead of 0, since the first block is used to derive the one-time
+Poly1305 key.
 
 ### XChaCha20 Pseudocode
 
@@ -220,7 +223,7 @@ AEAD_XChaCha20_Poly1305, as described in (#aeadxchacha20poly1305).
 xchacha20_encrypt(key, nonce, plaintext):
     subkey = hchacha20(key, nonce[0:15])
     chacha20_nonce = "\x00\x00\x00\x00" + nonce[16:23]
-    blk_ctr = 1
+    blk_ctr = 0
     return chacha20_encrypt(subkey, chacha20_nonce, plaintext, blk_ctr)
 ```
 
