@@ -91,11 +91,13 @@ Table of Contents
      5.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
    Appendix A.  Additional Test Vectors  . . . . . . . . . . . . . .   9
      A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305 . . .   9
-     A.2.  Example and Test Vector for XChaCha20 . . . . . . . . . .  11
-     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  13
-       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  13
-       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  14
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  15
+     A.2.  Example and Test Vectors for XChaCha20  . . . . . . . . .  11
+       A.2.1.  With Block Counter = 0  . . . . . . . . . . . . . . .  11
+       A.2.2.  With Block Counter = 1  . . . . . . . . . . . . . . .  13
+     A.3.  Developer-Friendly Test Vectors . . . . . . . . . . . . .  15
+       A.3.1.  AEAD_XCHACHA20_POLY1305 . . . . . . . . . . . . . . .  15
+       A.3.2.  XChaCha20 . . . . . . . . . . . . . . . . . . . . . .  16
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
@@ -103,8 +105,6 @@ Table of Contents
    allow for message confidentiality to be assured even in the presence
    of adaptive chosen-ciphertext attacks, but they're known to be
    brittle to nonce-misuse conditions [1].
-
-
 
 
 
@@ -562,10 +562,119 @@ Arciszewski             Expires January 13, 2020               [Page 10]
 Internet-Draft                                                 July 2019
 
 
-A.2.  Example and Test Vector for XChaCha20
+A.2.  Example and Test Vectors for XChaCha20
 
    Note: This is for the XChaCha20 stream cipher itself, not the AEAD
    construction.
+
+A.2.1.  With Block Counter = 0
+
+   Counter: 0
+
+   Plaintext:
+
+  000  54 68 65 20 64 68 6f 6c 65 20 28 70 72 6f 6e 6f  The dhole (prono
+  010  75 6e 63 65 64 20 22 64 6f 6c 65 22 29 20 69 73  unced "dole") is
+  020  20 61 6c 73 6f 20 6b 6e 6f 77 6e 20 61 73 20 74   also known as t
+  030  68 65 20 41 73 69 61 74 69 63 20 77 69 6c 64 20  he Asiatic wild
+  040  64 6f 67 2c 20 72 65 64 20 64 6f 67 2c 20 61 6e  dog, red dog, an
+  050  64 20 77 68 69 73 74 6c 69 6e 67 20 64 6f 67 2e  d whistling dog.
+  060  20 49 74 20 69 73 20 61 62 6f 75 74 20 74 68 65   It is about the
+  070  20 73 69 7a 65 20 6f 66 20 61 20 47 65 72 6d 61   size of a Germa
+  080  6e 20 73 68 65 70 68 65 72 64 20 62 75 74 20 6c  n shepherd but l
+  090  6f 6f 6b 73 20 6d 6f 72 65 20 6c 69 6b 65 20 61  ooks more like a
+  0a0  20 6c 6f 6e 67 2d 6c 65 67 67 65 64 20 66 6f 78   long-legged fox
+  0b0  2e 20 54 68 69 73 20 68 69 67 68 6c 79 20 65 6c  . This highly el
+  0c0  75 73 69 76 65 20 61 6e 64 20 73 6b 69 6c 6c 65  usive and skille
+  0d0  64 20 6a 75 6d 70 65 72 20 69 73 20 63 6c 61 73  d jumper is clas
+  0e0  73 69 66 69 65 64 20 77 69 74 68 20 77 6f 6c 76  sified with wolv
+  0f0  65 73 2c 20 63 6f 79 6f 74 65 73 2c 20 6a 61 63  es, coyotes, jac
+  100  6b 61 6c 73 2c 20 61 6e 64 20 66 6f 78 65 73 20  kals, and foxes
+  110  69 6e 20 74 68 65 20 74 61 78 6f 6e 6f 6d 69 63  in the taxonomic
+  120  20 66 61 6d 69 6c 79 20 43 61 6e 69 64 61 65 2e   family Canidae.
+
+   Key:
+
+  000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
+  016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+   IV:
+
+  000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
+  016  50 51 52 53 54 55 56 58                          PQRSTUVX
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski             Expires January 13, 2020               [Page 11]
+
+Internet-Draft                                                 July 2019
+
+
+   Keystream:
+
+  000: 11 31 ce 9a 2a 20 ae 0d 67 c8 93 5c 77 89 fa 10  .1..* ..g..\w...
+  010: 25 c9 e5 bb 72 0f b9 6f 11 35 4f b9 7a f0 bd 9a  %...r..o.5O.z...
+  020: ad ec 08 63 ba 60 ca c8 58 2c 48 f8 6c df c4 8e  ...c.`..X,H.l...
+  030: dd 46 a4 86 42 c5 de 62 cc f1 1c 7b 21 bf 33 7d  .F..B..b...{!.3}
+  040: 29 62 4b 4b 1b 14 0a ce 53 74 0e 40 5b 21 68 54  )bKK....St.@[!hT
+  050: 0f d7 d6 30 c1 f5 36 fe cd 72 2f c3 cd db a7 f4  ...0..6..r/.....
+  060: cc a9 8c f9 e4 7e 5e 64 d1 15 45 0f 9b 12 5b 54  .....~^d..E...[T
+  070: 44 9f f7 61 41 ca 62 0a 1f 9c fc ab 2a 1a 8a 25  D..aA.b.....*..%
+  080: 5e 76 6a 52 66 b8 78 84 61 20 ea 64 ad 99 aa 47  ^vjRf.x.a .d...G
+  090: 94 71 e6 3b ef cb d3 7c d1 c2 2a 22 1f e4 62 21  .q.;...|..*"..b!
+  0a0: 5c f3 2c 74 89 5b f5 05 86 3c cd dd 48 f6 29 16  \.,t.[...<..H.).
+  0b0: dc 65 21 f1 ec 50 a5 ae 08 90 3a a2 59 d9 bf 60  .e!..P....:.Y..`
+  0c0: 7c d8 02 6f ba 54 86 04 f1 b6 07 2d 91 bc 91 24  |..o.T.....-...$
+  0d0: 3a 5b 84 5f 7f d1 71 b0 2e dc 5a 0a 84 cf 28 dd  :[._..q...Z...(.
+  0e0: 24 11 46 bc 37 6e 3f 48 df 5e 7f ee 1d 11 04 8c  $.F.7n?H.^......
+  0f0: 19 0a 3d 3d eb 0f eb 64 b4 2d 9c 6f de ee 29 0f  ..==...d.-.o..).
+  100: a0 e6 ae 2c 26 c0 24 9e a8 c1 81 f7 e2 ff d1 00  ...,&.$.........
+  110: cb e5 fd 3c 4f 82 71 d6 2b 15 33 0c b8 fd cf 00  ...<O.q.+.3.....
+  120: b3 df 50 7c a8 c9 24 f7 01 7b 7e 71 2d 15 a2 eb  ..P|..$..{~q-...
+
+   Ciphertext:
+
+  000: 45 59 ab ba 4e 48 c1 61 02 e8 bb 2c 05 e6 94 7f  EY..NH.a...,....
+  010: 50 a7 86 de 16 2f 9b 0b 7e 59 2a 9b 53 d0 d4 e9  P..../..~Y*.S...
+  020: 8d 8d 64 10 d5 40 a1 a6 37 5b 26 d8 0d ac e4 fa  ..d..@..7[&.....
+  030: b5 23 84 c7 31 ac bf 16 a5 92 3c 0c 48 d3 57 5d  .#..1.....<.H.W]
+  040: 4d 0d 2c 67 3b 66 6f aa 73 10 61 27 77 01 09 3a  M.,g;fo.s.a'w..:
+  050: 6b f7 a1 58 a8 86 42 92 a4 1c 48 e3 a9 b4 c0 da  k..X..B...H.....
+  060: ec e0 f8 d9 8d 0d 7e 05 b3 7a 30 7b bb 66 33 31  ......~..z0{.f31
+  070: 64 ec 9e 1b 24 ea 0d 6c 3f fd dc ec 4f 68 e7 44  d...$..l?...Oh.D
+  080: 30 56 19 3a 03 c8 10 e1 13 44 ca 06 d8 ed 8a 2b  0V.:.....D.....+
+  090: fb 1e 8d 48 cf a6 bc 0e b4 e2 46 4b 74 81 42 40  ...H......FKt.B@
+  0a0: 7c 9f 43 1a ee 76 99 60 e1 5b a8 b9 68 90 46 6e  |.C..v.`.[..h.Fn
+  0b0: f2 45 75 99 85 23 85 c6 61 f7 52 ce 20 f9 da 0c  .Eu..#..a.R. ...
+  0c0: 09 ab 6b 19 df 74 e7 6a 95 96 74 46 f8 d0 fd 41  ..k..t.j..tF...A
+  0d0: 5e 7b ee 2a 12 a1 14 c2 0e b5 29 2a e7 a3 49 ae  ^{.*......)*..I.
+  0e0: 57 78 20 d5 52 0a 1f 3f b6 2a 17 ce 6a 7e 68 fa  Wx .R..?.*..j~h.
+  0f0: 7c 79 11 1d 88 60 92 0b c0 48 ef 43 fe 84 48 6c  |y...`...H.C..Hl
+  100: cb 87 c2 5f 0a e0 45 f0 cc e1 e7 98 9a 9a a2 20  ..._..E........
+  110: a2 8b dd 48 27 e7 51 a2 4a 6d 5c 62 d7 90 a6 63  ...H'.Q.Jm\b...c
+  120: 93 b9 31 11 c1 a5 5d d7 42 1a 10 18 49 74 c7 c5  ..1...].B...It..
+
+
+
+
+
+
+
+
+Arciszewski             Expires January 13, 2020               [Page 12]
+
+Internet-Draft                                                 July 2019
+
+
+A.2.2.  With Block Counter = 1
 
    Counter: 1
 
@@ -613,7 +722,10 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-Arciszewski             Expires January 13, 2020               [Page 11]
+
+
+
+Arciszewski             Expires January 13, 2020               [Page 13]
 
 Internet-Draft                                                 July 2019
 
@@ -669,7 +781,7 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 13, 2020               [Page 12]
+Arciszewski             Expires January 13, 2020               [Page 14]
 
 Internet-Draft                                                 July 2019
 
@@ -725,12 +837,81 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski             Expires January 13, 2020               [Page 13]
+Arciszewski             Expires January 13, 2020               [Page 15]
 
 Internet-Draft                                                 July 2019
 
 
 A.3.2.  XChaCha20
+
+A.3.2.1.  Block Counter = 0
+
+   Counter: 0
+
+   Plaintext:
+
+     5468652064686f6c65202870726f6e6f756e6365642022646f6c652229206973
+     20616c736f206b6e6f776e2061732074686520417369617469632077696c6420
+     646f672c2072656420646f672c20616e642077686973746c696e6720646f672e
+     2049742069732061626f7574207468652073697a65206f662061204765726d61
+     6e20736865706865726420627574206c6f6f6b73206d6f7265206c696b652061
+     206c6f6e672d6c656767656420666f782e205468697320686967686c7920656c
+     757369766520616e6420736b696c6c6564206a756d70657220697320636c6173
+     736966696564207769746820776f6c7665732c20636f796f7465732c206a6163
+     6b616c732c20616e6420666f78657320696e20746865207461786f6e6f6d6963
+     2066616d696c792043616e696461652e
+
+   Key:
+
+     808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f
+
+   IV:
+
+             404142434445464748494a4b4c4d4e4f5051525354555658
+
+   Keystream:
+
+     1131ce9a2a20ae0d67c8935c7789fa1025c9e5bb720fb96f11354fb97af0bd9a
+     adec0863ba60cac8582c48f86cdfc48edd46a48642c5de62ccf11c7b21bf337d
+     29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
+     cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
+     5e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe46221
+     5cf32c74895bf505863ccddd48f62916dc6521f1ec50a5ae08903aa259d9bf60
+     7cd8026fba548604f1b6072d91bc91243a5b845f7fd171b02edc5a0a84cf28dd
+     241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290f
+     a0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00
+     b3df507ca8c924f7017b7e712d15a2eb
+
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski             Expires January 13, 2020               [Page 16]
+
+Internet-Draft                                                 July 2019
+
+
+   Ciphertext:
+
+     4559abba4e48c16102e8bb2c05e6947f50a786de162f9b0b7e592a9b53d0d4e9
+     8d8d6410d540a1a6375b26d80dace4fab52384c731acbf16a5923c0c48d3575d
+     4d0d2c673b666faa731061277701093a6bf7a158a8864292a41c48e3a9b4c0da
+     ece0f8d98d0d7e05b37a307bbb66333164ec9e1b24ea0d6c3ffddcec4f68e744
+     3056193a03c810e11344ca06d8ed8a2bfb1e8d48cfa6bc0eb4e2464b74814240
+     7c9f431aee769960e15ba8b96890466ef2457599852385c661f752ce20f9da0c
+     09ab6b19df74e76a95967446f8d0fd415e7bee2a12a114c20eb5292ae7a349ae
+     577820d5520a1f3fb62a17ce6a7e68fa7c79111d8860920bc048ef43fe84486c
+     cb87c25f0ae045f0cce1e7989a9aa220a28bdd4827e751a24a6d5c62d790a663
+     93b93111c1a55dd7421a10184974c7c5
+
+A.3.2.2.  Block Counter = 1
 
    Counter: 1
 
@@ -757,6 +938,22 @@ A.3.2.  XChaCha20
 
    Keystream:
 
+
+
+
+
+
+
+
+
+
+
+
+Arciszewski             Expires January 13, 2020               [Page 17]
+
+Internet-Draft                                                 July 2019
+
+
      29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
      cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a25
      5e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe46221
@@ -767,24 +964,6 @@ A.3.2.  XChaCha20
      b3df507ca8c924f7017b7e712d15a2eb5c50484451e54e1b4b995bd8fdd94597
      bb94d7af0b2c04df10ba0890899ed9293a0f55b8bafa999264035f1d4fbe7fe0
      aafa109a62372027e50e10cdfecca127
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Arciszewski             Expires January 13, 2020               [Page 14]
-
-Internet-Draft                                                 July 2019
-
 
    Ciphertext:
 
@@ -826,15 +1005,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Arciszewski             Expires January 13, 2020               [Page 15]
+Arciszewski             Expires January 13, 2020               [Page 18]

@@ -209,6 +209,25 @@ function tv2(): bool
         echo '+ ' . Sodium::bin2hex($ciphertext) . PHP_EOL;
         return false;
     }
+    $plaintext = str_repeat("\0", 304);
+    $expected = Sodium::hex2bin("1131ce9a2a20ae0d67c8935c7789fa1025c9e5bb720fb96f11354fb97af0bd9aadec0863ba60cac8582c48f86cdfc48edd46a48642c5de62ccf11c7b21bf337d29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4cca98cf9e47e5e64d115450f9b125b54449ff76141ca620a1f9cfcab2a1a8a255e766a5266b878846120ea64ad99aa479471e63befcbd37cd1c22a221fe462215cf32c74895bf505863ccddd48f62916dc6521f1ec50a5ae08903aa259d9bf607cd8026fba548604f1b6072d91bc91243a5b845f7fd171b02edc5a0a84cf28dd241146bc376e3f48df5e7fee1d11048c190a3d3deb0feb64b42d9c6fdeee290fa0e6ae2c26c0249ea8c181f7e2ffd100cbe5fd3c4f8271d62b15330cb8fdcf00b3df507ca8c924f7017b7e712d15a2eb");
+    $ciphertext = ParagonIE_Sodium_Core_XChaCha20::ietfStreamXorIc($plaintext, $iv, $key, "\x00\x00\x00\x00\x00\x00\x00\x00");
+    if (!hash_equals($expected, $ciphertext)) {
+        echo "Incorrect test vector (Keystream)!\n";
+        echo '- ' . Sodium::bin2hex($expected) . PHP_EOL;
+        echo '+ ' . Sodium::bin2hex($ciphertext) . PHP_EOL;
+        return false;
+    }
+
+    $plaintext = "The dhole (pronounced \"dole\") is also known as the Asiatic wild dog, red dog, and whistling dog. It is about the size of a German shepherd but looks more like a long-legged fox. This highly elusive and skilled jumper is classified with wolves, coyotes, jackals, and foxes in the taxonomic family Canidae.";
+    $expected = Sodium::hex2bin("4559abba4e48c16102e8bb2c05e6947f50a786de162f9b0b7e592a9b53d0d4e98d8d6410d540a1a6375b26d80dace4fab52384c731acbf16a5923c0c48d3575d4d0d2c673b666faa731061277701093a6bf7a158a8864292a41c48e3a9b4c0daece0f8d98d0d7e05b37a307bbb66333164ec9e1b24ea0d6c3ffddcec4f68e7443056193a03c810e11344ca06d8ed8a2bfb1e8d48cfa6bc0eb4e2464b748142407c9f431aee769960e15ba8b96890466ef2457599852385c661f752ce20f9da0c09ab6b19df74e76a95967446f8d0fd415e7bee2a12a114c20eb5292ae7a349ae577820d5520a1f3fb62a17ce6a7e68fa7c79111d8860920bc048ef43fe84486ccb87c25f0ae045f0cce1e7989a9aa220a28bdd4827e751a24a6d5c62d790a66393b93111c1a55dd7421a10184974c7c5");
+    $ciphertext = ParagonIE_Sodium_Core_XChaCha20::ietfStreamXorIc($plaintext, $iv, $key, "\x00\x00\x00\x00\x00\x00\x00\x00");
+    if (!hash_equals($expected, $ciphertext)) {
+        echo "Incorrect test vector!\n";
+        echo '- ' . Sodium::bin2hex($expected) . PHP_EOL;
+        echo '+ ' . Sodium::bin2hex($ciphertext) . PHP_EOL;
+        return false;
+    }
     return true;
 }
 
