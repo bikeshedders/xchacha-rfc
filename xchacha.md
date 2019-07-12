@@ -87,7 +87,6 @@ The algorithm for XChaCha20-Poly1305 is as follows:
 XChaCha20-Poly1305 implementations already exist in
 [WireGuard](https://www.wireguard.com),
 [libsodium](https://download.libsodium.org/doc/secret-key_cryptography/xchacha20-poly1305_construction.html),
-[Monocypher](https://monocypher.org/manual/aead),
 [xsecretbox](https://github.com/jedisct1/xsecretbox),
 [Tink](https://github.com/google/tink),
 and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chacha20poly1305#NewX) library.
@@ -98,8 +97,8 @@ XChaCha12.
 [LibreSSL](https://github.com/libressl-portable/openbsd/commit/f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-e67c04cb298e3a810d8d68c7893942be)
 has already implemented XChaCha20-Poly1305.
 
-Note that we're building upon uses the IETF's ChaCha20 (96-bit nonce), not
-Bernstein's ChaCha20 (64-bit nonce).
+Note that the construction we're building upon uses the IETF's ChaCha20 (96-bit nonce),
+not Bernstein's ChaCha20 (64-bit nonce).
 
 ## Motivation for XChaCha20-Poly1305
 
