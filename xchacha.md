@@ -7,7 +7,7 @@
     workgroup = "(No Working Group)"
     keyword = ["encryption", "AEAD", "cryptography", "security", "authenticated encryption"]
     
-    date = 2019-04-09T18:00:00Z
+    date = 2019-07-12T17:00:00Z
     
     [[author]]
     initials="S."
@@ -95,8 +95,8 @@ and in Go's [crypto/chacha20poly1305](https://godoc.org/golang.org/x/crypto/chac
 Similarly, Google's [HPolyC](https://github.com/google/hpolyc) implements
 XChaCha12.
 
-[LibreSSL] LibreSSL has already implemented it 
-[https://github.com/libressl-portable/openbsd/commit/f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-e67c04cb298e3a810d8d68c7893942be]
+[LibreSSL](https://github.com/libressl-portable/openbsd/commit/f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-e67c04cb298e3a810d8d68c7893942be)
+has already implemented XChaCha20-Poly1305.
 
 Note that we're building upon uses the IETF's ChaCha20 (96-bit nonce), not
 Bernstein's ChaCha20 (64-bit nonce).
@@ -328,6 +328,8 @@ Key:
 ```
 000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
 016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
+
+
 ```
 
 IV:
@@ -339,7 +341,6 @@ IV:
 32-bit fixed-common part:
 ```
 000  00 00 00 00                                      ....
-
 ```
 
 Poly1305 Key:

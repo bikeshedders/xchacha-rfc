@@ -4,8 +4,8 @@
 
 (No Working Group)                                        S. Arciszewski
 Internet-Draft                            Paragon Initiative Enterprises
-Intended status: Informational                             April 9, 2019
-Expires: October 11, 2019
+Intended status: Informational                             July 12, 2019
+Expires: January 13, 2020
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
@@ -16,9 +16,9 @@ Abstract
    The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
    ChaCha-based ciphersuites to accept a 192-bit nonce with similar
    guarantees to the original construction, except with a much lower
-   probability of nonce misuse occurring.  This enables XChaCha
-   constructions to be stateless, while retaining the same security
-   assumptions as ChaCha.
+   probability of nonce misuse occurring.  This helps for long running
+   TLS connections.  This also enables XChaCha constructions to be
+   stateless, while retaining the same security assumptions as ChaCha.
 
    This document defines XChaCha20, which uses HChaCha20 to convert the
    key and part of the nonce into a subkey, which is in turn used with
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 11, 2019.
+   This Internet-Draft will expire on January 13, 2020.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 1]
+Arciszewski             Expires January 13, 2020                [Page 1]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 2]
+Arciszewski             Expires January 13, 2020                [Page 2]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
    Several nonce misuse resistant cipher constructions have been
@@ -157,17 +157,17 @@ Internet-Draft                                                April 2019
 
    Similarly, Google's HPolyC [10] implements XChaCha12.
 
+   LibreSSL [11] has already implemented XChaCha20-Poly1305.
+
    Note that we're building upon uses the IETF's ChaCha20 (96-bit
    nonce), not Bernstein's ChaCha20 (64-bit nonce).
 
 
 
 
-
-
-Arciszewski             Expires October 11, 2019                [Page 3]
+Arciszewski             Expires January 13, 2020                [Page 3]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 2.1.  Motivation for XChaCha20-Poly1305
@@ -198,8 +198,8 @@ Internet-Draft                                                April 2019
 2.2.  HChaCha20
 
    *HChaCha20* is an intermediary step towards XChaCha20 based on the
-   construction and security proof used to create XSalsa20 [11], an
-   extended-nonce Salsa20 variant used in NaCl [12].
+   construction and security proof used to create XSalsa20 [12], an
+   extended-nonce Salsa20 variant used in NaCl [13].
 
    HChaCha20 is initialized the same way as the ChaCha cipher, except
    that HChaCha20 uses a 128-bit nonce and has no counter.  Instead, the
@@ -221,9 +221,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 4]
+Arciszewski             Expires January 13, 2020                [Page 4]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
                   cccccccc  cccccccc  cccccccc  cccccccc
@@ -277,9 +277,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 5]
+Arciszewski             Expires January 13, 2020                [Page 5]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 2.3.  XChaCha20
@@ -313,7 +313,7 @@ Internet-Draft                                                April 2019
 
    The security of the XChaCha construction depends on both the security
    of the ChaCha stream cipher and the HChaCha intermediary step, for
-   reasons explained in the XSalsa20 paper [13] (which our XChaCha
+   reasons explained in the XSalsa20 paper [14] (which our XChaCha
    construction is derived from).
 
    Given that the 20-round ChaCha stream cipher (ChaCha20) is believed
@@ -333,9 +333,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 6]
+Arciszewski             Expires January 13, 2020                [Page 6]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
    bound is affected less by the insecurity of H than by the insecurity
@@ -389,9 +389,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 7]
+Arciszewski             Expires January 13, 2020                [Page 7]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 4.  IANA Considerations
@@ -445,9 +445,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019                [Page 8]
+Arciszewski             Expires January 13, 2020                [Page 8]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
    [5] https://download.libsodium.org/doc/secret-key_cryptography/
@@ -463,11 +463,15 @@ Internet-Draft                                                April 2019
 
    [10] https://github.com/google/hpolyc
 
-   [11] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
+   [11] https://github.com/libressl-portable/openbsd/commit/
+        f9ad715107c72ecbd84924fa7268f4d4686c9e43#diff-
+        e67c04cb298e3a810d8d68c7893942be
 
-   [12] https://nacl.cr.yp.to
+   [12] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
-   [13] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
+   [13] https://nacl.cr.yp.to
+
+   [14] https://cr.yp.to/snuffle/xsalsa-20110204.pdf
 
 Appendix A.  Additional Test Vectors
 
@@ -493,23 +497,23 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
   000  80 81 82 83 84 85 86 87 88 89 8a 8b 8c 8d 8e 8f  ................
   016  90 91 92 93 94 95 96 97 98 99 9a 9b 9c 9d 9e 9f  ................
 
+
+
+
+
+Arciszewski             Expires January 13, 2020                [Page 9]
+
+Internet-Draft                                                 July 2019
+
+
    IV:
 
   000  40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f  @ABCDEFGHIJKLMNO
   016  50 51 52 53 54 55 56 57                          PQRSTUVW
 
-
-
-
-Arciszewski             Expires October 11, 2019                [Page 9]
-
-Internet-Draft                                                April 2019
-
-
    32-bit fixed-common part:
 
         000  00 00 00 00                                      ....
-
 
    Poly1305 Key:
 
@@ -553,13 +557,9 @@ Internet-Draft                                                April 2019
 
 
 
-
-
-
-
-Arciszewski             Expires October 11, 2019               [Page 10]
+Arciszewski             Expires January 13, 2020               [Page 10]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 A.2.  Example and Test Vector for XChaCha20
@@ -613,9 +613,9 @@ A.2.  Example and Test Vector for XChaCha20
 
 
 
-Arciszewski             Expires October 11, 2019               [Page 11]
+Arciszewski             Expires January 13, 2020               [Page 11]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
    Keystream:
@@ -669,9 +669,9 @@ Internet-Draft                                                April 2019
 
 
 
-Arciszewski             Expires October 11, 2019               [Page 12]
+Arciszewski             Expires January 13, 2020               [Page 12]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 A.3.  Developer-Friendly Test Vectors
@@ -725,9 +725,9 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski             Expires October 11, 2019               [Page 13]
+Arciszewski             Expires January 13, 2020               [Page 13]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
 A.3.2.  XChaCha20
@@ -781,9 +781,9 @@ A.3.2.  XChaCha20
 
 
 
-Arciszewski             Expires October 11, 2019               [Page 14]
+Arciszewski             Expires January 13, 2020               [Page 14]
 
-Internet-Draft                                                April 2019
+Internet-Draft                                                 July 2019
 
 
    Ciphertext:
@@ -837,4 +837,4 @@ Author's Address
 
 
 
-Arciszewski             Expires October 11, 2019               [Page 15]
+Arciszewski             Expires January 13, 2020               [Page 15]
