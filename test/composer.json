@@ -1,6 +1,6 @@
 {
   "require": {
     "php": "^7",
-    "paragonie/sodium_compat": "^1.7"
+    "paragonie/sodium_compat": ">= 1.10.1"
   }
 }

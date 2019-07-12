@@ -199,6 +199,16 @@ function tv2(): bool
         echo '+ ' . Sodium::bin2hex($ciphertext) . PHP_EOL;
         return false;
     }
+
+    $expected = Sodium::hex2bin("7d0a2e6b7f7c65a236542630294e063b7ab9b555a5d5149aa21e4ae1e4fbce87ecc8e08a8b5e350abe622b2ffa617b202cfad72032a3037e76ffdcdc4376ee053a190d7e46ca1de04144850381b9cb29f051915386b8a710b8ac4d027b8b050f7cba5854e028d564e453b8a968824173fc16488b8970cac828f11ae53cabd20112f87107df24ee6183d2274fe4c8b1485534ef2c5fbc1ec24bfc3663efaa08bc047d29d25043532db8391a8a3d776bf4372a6955827ccb0cdd4af403a7ce4c63d595c75a43e045f0cce1f29c8b93bd65afc5974922f214a40b7c402cdb91ae73c0b63615cdad0480680f16515a7ace9d39236464328a37743ffc28f4ddb324f4d0f5bbdc270c65b1749a6efff1fbaa09536175ccd29fb9e6057b307320d316838a9c71f70b5b5907a66f7ea49aadc409");
+    $ciphertext = ParagonIE_Sodium_Core_XChaCha20::ietfStreamXorIc($plaintext, $iv, $key, "\x01\x00\x00\x00\x00\x00\x00\x00");
+
+    if (!hash_equals($expected, $ciphertext)) {
+        echo "Incorrect test vector!\n";
+        echo '- ' . Sodium::bin2hex($expected) . PHP_EOL;
+        echo '+ ' . Sodium::bin2hex($ciphertext) . PHP_EOL;
+        return false;
+    }
     return true;
 }
 
