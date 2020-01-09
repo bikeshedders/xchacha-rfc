@@ -4,8 +4,8 @@
 
 (No Working Group)                                        S. Arciszewski
 Internet-Draft                            Paragon Initiative Enterprises
-Intended status: Informational                             July 23, 2019
-Expires: January 24, 2020
+Intended status: Informational                          January 10, 2020
+Expires: July 13, 2020
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 24, 2020.
+   This Internet-Draft will expire on July 13, 2020.
 
 
 
@@ -53,14 +53,14 @@ Status of This Memo
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 1]
+Arciszewski               Expires July 13, 2020                 [Page 1]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 Copyright Notice
 
-   Copyright (c) 2019 IETF Trust and the persons identified as the
+   Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 2]
+Arciszewski               Expires July 13, 2020                 [Page 2]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
    Several nonce misuse resistant cipher constructions have been
@@ -165,9 +165,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 3]
+Arciszewski               Expires July 13, 2020                 [Page 3]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 2.1.  Motivation for XChaCha20-Poly1305
@@ -221,9 +221,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 4]
+Arciszewski               Expires July 13, 2020                 [Page 4]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
                   cccccccc  cccccccc  cccccccc  cccccccc
@@ -277,9 +277,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 5]
+Arciszewski               Expires July 13, 2020                 [Page 5]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 2.3.  XChaCha20
@@ -333,9 +333,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 6]
+Arciszewski               Expires July 13, 2020                 [Page 6]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 3.1.  Proving XChaCha20 to be Secure
@@ -389,9 +389,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 7]
+Arciszewski               Expires July 13, 2020                 [Page 7]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
                  HSalsa20:  0,  5, 10, 15,  6,  7,  8,  9
@@ -445,9 +445,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 8]
+Arciszewski               Expires July 13, 2020                 [Page 8]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 5.2.  URIs
@@ -501,9 +501,9 @@ A.1.  Example and Test Vector for AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski             Expires January 24, 2020                [Page 9]
+Arciszewski               Expires July 13, 2020                 [Page 9]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
    AAD:
@@ -557,9 +557,9 @@ A.2.1.  With Block Counter = 0
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 10]
+Arciszewski               Expires July 13, 2020                [Page 10]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
   000  54 68 65 20 64 68 6f 6c 65 20 28 70 72 6f 6e 6f  The dhole (prono
@@ -613,9 +613,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 11]
+Arciszewski               Expires July 13, 2020                [Page 11]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
    Keystream:
@@ -669,9 +669,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 12]
+Arciszewski               Expires July 13, 2020                [Page 12]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 A.2.2.  With Block Counter = 1
@@ -725,9 +725,9 @@ A.2.2.  With Block Counter = 1
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 13]
+Arciszewski               Expires July 13, 2020                [Page 13]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
    Keystream:
@@ -781,9 +781,9 @@ Internet-Draft                                                 July 2019
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 14]
+Arciszewski               Expires July 13, 2020                [Page 14]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 A.3.  Developer-Friendly Test Vectors
@@ -837,9 +837,9 @@ A.3.1.  AEAD_XCHACHA20_POLY1305
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 15]
+Arciszewski               Expires July 13, 2020                [Page 15]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
 A.3.2.  XChaCha20
@@ -893,9 +893,9 @@ A.3.2.1.  Block Counter = 0
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 16]
+Arciszewski               Expires July 13, 2020                [Page 16]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
    Ciphertext:
@@ -949,9 +949,9 @@ A.3.2.2.  Block Counter = 1
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 17]
+Arciszewski               Expires July 13, 2020                [Page 17]
 
-Internet-Draft                                                 July 2019
+Internet-Draft                                              January 2020
 
 
      29624b4b1b140ace53740e405b2168540fd7d630c1f536fecd722fc3cddba7f4
@@ -1005,4 +1005,4 @@ Author's Address
 
 
 
-Arciszewski             Expires January 24, 2020               [Page 18]
+Arciszewski               Expires July 13, 2020                [Page 18]
