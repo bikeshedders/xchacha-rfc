@@ -3,7 +3,7 @@
     title = "XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305"
     abbr = "XChaCha"
     category = "info"
-    docname = "draft-irtf-cfrg-xchacha-01"
+    docname = "draft-irtf-cfrg-xchacha-02"
     workgroup = "(No Working Group)"
     keyword = ["encryption", "AEAD", "cryptography", "security", "authenticated encryption"]
     
@@ -35,7 +35,7 @@ key and part of the nonce into a subkey, which is in turn used with the
 remainder of the nonce with ChaCha20 to generate a pseudorandom keystream
 (e.g. for message encryption).
 
-This document also defines AEAD_XChaCha20_Poly1305, a variant of [@!RFC7539]
+This document also defines AEAD_XChaCha20_Poly1305, a variant of [@!RFC8439]
 that utilizes the XChaCha20 construction in place of ChaCha20.
 
 [-@!RFC4648]
@@ -74,14 +74,14 @@ RFC 2119 [@!RFC2119].
 # AEAD_XChaCha20_Poly1305
 
 XChaCha20-Poly1305 is a variant of the ChaCha20-Poly1305 AEAD construction as
-defined in [@!RFC7539] that uses a 192-bit nonce instead of a 96-bit nonce.
+defined in [@!RFC8439] that uses a 192-bit nonce instead of a 96-bit nonce.
 
 The algorithm for XChaCha20-Poly1305 is as follows:
 
 1. Calculate a subkey from the first 16 bytes of the nonce and the key, using
    HChaCha20 ((#hchacha20)).
 2. Use the subkey and remaining 8 bytes of the nonce (prefixed with 4 NUL
-   bytes) with AEAD_CHACHA20_POLY1305 from [@!RFC7539] as normal. The definition
+   bytes) with AEAD_CHACHA20_POLY1305 from [@!RFC8439] as normal. The definition
    for XChaCha20 is given in (#xchacha20).
 
 XChaCha20-Poly1305 implementations already exist in
@@ -204,7 +204,7 @@ and HChaCha20. All one needs to do is:
 1. Pass the key and the first 16 bytes of the 24-byte nonce to
    HChaCha20 to obtain the subkey.
 2. Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
-   (prefixed by 4 NUL bytes, since [@!RFC7539] specifies a 12-byte
+   (prefixed by 4 NUL bytes, since [@!RFC8439] specifies a 12-byte
    nonce). 
 
 XChaCha20 is a stream cipher and offers no integrity guarantees without

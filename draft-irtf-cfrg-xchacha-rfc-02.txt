@@ -9,7 +9,7 @@ Expires: January 24, 2020
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
-                       draft-irtf-cfrg-xchacha-01
+                       draft-irtf-cfrg-xchacha-02
 
 Abstract
 
@@ -26,7 +26,7 @@ Abstract
    keystream (e.g. for message encryption).
 
    This document also defines AEAD_XChaCha20_Poly1305, a variant of
-   [RFC7539] that utilizes the XChaCha20 construction in place of
+   [RFC8439] that utilizes the XChaCha20 construction in place of
    ChaCha20.
 
 Status of This Memo
@@ -139,7 +139,7 @@ Internet-Draft                                                 July 2019
 2.  AEAD_XChaCha20_Poly1305
 
    XChaCha20-Poly1305 is a variant of the ChaCha20-Poly1305 AEAD
-   construction as defined in [RFC7539] that uses a 192-bit nonce
+   construction as defined in [RFC8439] that uses a 192-bit nonce
    instead of a 96-bit nonce.
 
    The algorithm for XChaCha20-Poly1305 is as follows:
@@ -148,7 +148,7 @@ Internet-Draft                                                 July 2019
        key, using HChaCha20 (Section 2.2).
 
    2.  Use the subkey and remaining 8 bytes of the nonce (prefixed with
-       4 NUL bytes) with AEAD_CHACHA20_POLY1305 from [RFC7539] as
+       4 NUL bytes) with AEAD_CHACHA20_POLY1305 from [RFC8439] as
        normal.  The definition for XChaCha20 is given in Section 2.3.
 
    XChaCha20-Poly1305 implementations already exist in WireGuard [4],
@@ -291,7 +291,7 @@ Internet-Draft                                                 July 2019
        HChaCha20 to obtain the subkey.
 
    2.  Use the subkey and remaining 8 byte nonce with ChaCha20 as normal
-       (prefixed by 4 NUL bytes, since [RFC7539] specifies a 12-byte
+       (prefixed by 4 NUL bytes, since [RFC8439] specifies a 12-byte
        nonce).
 
    XChaCha20 is a stream cipher and offers no integrity guarantees
@@ -426,9 +426,9 @@ Internet-Draft                                                 July 2019
               Standard (AES)", RFC 5297, DOI 10.17487/RFC5297, October
               2008, <https://www.rfc-editor.org/info/rfc5297>.
 
-   [RFC7539]  Nir, Y. and A. Langley, "ChaCha20 and Poly1305 for IETF
-              Protocols", RFC 7539, DOI 10.17487/RFC7539, May 2015,
-              <https://www.rfc-editor.org/info/rfc7539>.
+   [RFC8439]  Nir, Y. and A. Langley, "ChaCha20 and Poly1305 for IETF
+              Protocols", RFC 8439, DOI 10.17487/RFC8439, June 2018,
+              <https://www.rfc-editor.org/info/rfc8439>.
 
 5.2.  URIs
 
