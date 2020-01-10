@@ -9,7 +9,7 @@ Expires: July 13, 2020
 
 
        XChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305
-                       draft-irtf-cfrg-xchacha-02
+                       draft-irtf-cfrg-xchacha-03
 
 Abstract
 
