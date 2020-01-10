@@ -220,10 +220,10 @@ Poly1305 key.
 ### XChaCha20 Pseudocode
 
 ```
-xchacha20_encrypt(key, nonce, plaintext):
+xchacha20_encrypt(key, nonce, plaintext, blk_ctr = 0):
     subkey = hchacha20(key, nonce[0:15])
     chacha20_nonce = "\x00\x00\x00\x00" + nonce[16:23]
-    blk_ctr = 0
+
     return chacha20_encrypt(subkey, chacha20_nonce, plaintext, blk_ctr)
 ```
 
